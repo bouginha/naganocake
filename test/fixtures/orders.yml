@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member_id: 1
+  desired_delivery_date: 2021-03-16
+  delivery_name: MyString
+  shipping_address: MyString
+  payment_method: 1
+  billing_amount: 1
+  shipping_cost: 1
+  postal_code: MyString
+  received_status: 1
+
+two:
+  member_id: 1
+  desired_delivery_date: 2021-03-16
+  delivery_name: MyString
+  shipping_address: MyString
+  payment_method: 1
+  billing_amount: 1
+  shipping_cost: 1
+  postal_code: MyString
+  received_status: 1
