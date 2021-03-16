@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'admins/index'
+  get 'admins/show'
+  get 'admins/edit'
+  get 'admins/update'
+  get 'addresses/index'
+  get 'addresses/edit'
+  get 'addresses/update'
+  get 'addresses/create'
+  get 'addresses/destroy'
   devise_for :admins
   devise_for :members
   get 'ordered_products/update'
