@@ -14,6 +14,8 @@
       <th></th>
       <th>商品名</th>
       <th>詳細</th>
+      <th>値段</th>
+      <th>ジャンル</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -31,6 +33,12 @@
           </td>
           <td>
           <p><%= product.about%></p>
+          </td>
+          <td>
+          <p><%= product.normal_price%></p>
+          </td>
+          <td>
+          <p><%= product.products_genre_id%></p>
           </td>
         </tr>
       <% end %>

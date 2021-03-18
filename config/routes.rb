@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "homes/top"
   get 'products_genres/show'
   get 'products_genres/index'
   namespace :admins do
