@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'products_genres/new'
     get 'products_genres/show'
     get 'products_genres/index'
-    get 'products_genres/edit'
+    get 'products_genres/:id/edit/'
     get 'products_genres/update'
     get 'products_genres/create'
     get 'products_genres/destroy'

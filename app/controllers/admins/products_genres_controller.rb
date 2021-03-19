@@ -12,21 +12,22 @@ class Admins::ProductsGenresController < ApplicationController
         end
         def show
         end
-        
+
         def index
             @products_genre=ProductGenre.all
-            
+
         end
-        
+
         def edit
+          @products_genre = ProductsGenre.find(params[:id])
         end
-        
+
         def destroy
         end
-        
+
         def update
         end
-     private   
+     private
         def product_params
           params.require(:product_genre).permit(:name)
         end
