@@ -1,12 +1,14 @@
 class Admins::ProductsGenresController < ApplicationController
-  def new
-            @product_genre=Product_genre.new
+        def new
+  
+            @products_genre=ProductsGenre.new
         end
         def create
-            @products_genre=ProductsGenre.new(product_params)
-            if @product_genre.save
-              redirect_to admin_products_genre_index_path
-              else
+
+            @products_genre=ProductsGenre.new(products_genre_params)
+            if @products_genre.save
+              redirect_to products_genres_path
+            else
               render :new
             end
         end
@@ -14,7 +16,9 @@ class Admins::ProductsGenresController < ApplicationController
         end
 
         def index
-            @products_genre=ProductGenre.all
+
+            @products_genre=ProductsGenre.all
+            
 
         end
 
@@ -27,8 +31,10 @@ class Admins::ProductsGenresController < ApplicationController
 
         def update
         end
-     private
-        def product_params
+
+     private   
+        def products_genre_params
+
           params.require(:product_genre).permit(:name)
         end
 end
