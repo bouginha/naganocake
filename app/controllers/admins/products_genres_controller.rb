@@ -14,7 +14,7 @@ class Admins::ProductsGenresController < ApplicationController
         end
         
         def index
-            @products_genre=ProductGenre.all
+            @products_genre=ProductsGenre.all
             
         end
         
