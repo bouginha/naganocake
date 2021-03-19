@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+
   def show
     # @member=Member.find()
   end
