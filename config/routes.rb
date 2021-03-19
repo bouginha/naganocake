@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 # admin
+
   devise_for :admins
+  
   namespace :admins do
     resources :products_genres
     resources :products
@@ -34,6 +36,6 @@ Rails.application.routes.draw do
   # namespace :admins do
   #   resources :orders, only: [:show, :confirm, :create, :new, :thanks]
   # end
-
+root to: 'members#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

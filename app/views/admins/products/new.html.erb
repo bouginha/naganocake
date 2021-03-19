@@ -19,7 +19,14 @@
           </div>
           <%= f.text_area :about, class:"form-control", rows:"3", placeholder:"商品詳細" %>
           <%= f.text_field :normal_price, class:"form-control", placeholder:"税抜価格" %>
-          <%= f.text_field :products_genre_id, class:"form-control", placeholder:"商品ジャンル" %>
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">ジャンル</label>
+            
+            
+            <%= f.collection_select :products_genre_id, ProductsGenre.all, :id, :name %>
+          </div>
+          
           <hr>
           <%= f.submit '登録', class:"btn btn-lg btn-block btn-info mt-4" %>
         <% end %>
