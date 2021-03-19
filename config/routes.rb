@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+
 # admin
   devise_for :admins
+
+
   namespace :admins do
     resources :products_genres
     resources :products
@@ -17,9 +20,11 @@ Rails.application.routes.draw do
 
   resources :cart_products, only: [:index, :create, :update, :destroy, :all_destroy]
   resources :addresses, only: [:index, :edit, :update, :create, :destroy]
+
   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
   resources :orders, only: [:show, :confirm, :create, :new, :thanks]
   get 'homes/top'
+
 
   # namespace :admins do
   #   resources :cart_products, only: [:index, :create, :update, :destroy, :all_destroy]
@@ -36,8 +41,6 @@ Rails.application.routes.draw do
   # namespace :admins do
   #   resources :orders, only: [:show, :confirm, :create, :new, :thanks]
   # end
-
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

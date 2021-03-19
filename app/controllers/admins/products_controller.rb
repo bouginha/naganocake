@@ -3,9 +3,9 @@ class Admins::ProductsController < ApplicationController
             @product=Product.new
         end
         def create
-            @product=Product.new(product_params)
+            @product=Product.find(product_params)
             if @product.save
-              redirect_to adminproducts_path
+              redirect_to admin_products_path
             else
               render :new
             end

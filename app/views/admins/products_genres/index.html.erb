@@ -6,8 +6,8 @@
       
 
     <div class="col-md-8 offset-md-1">
-<h2>商品一覧</h2>
- <%= link_to "新規登録",admins_products_genre_new_path %>
+<h2>ジャンル一覧</h2>
+ <%= link_to "新規登録",new_admins_products_genre_path %>
 <table class="table table-inverse">
       <thead>
     <tr>
@@ -15,11 +15,11 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-      <% @products.each do |product| %>
+      <% @products_genre.each do |products_genre| %>
         <tr>
 
           <td>
-            <p><%= product_genre.products_genre_id%></p>
+            <p><%= product_genre.id%></p>
           </td>        
           <td>
             <p><%= product_genre.name%></p>
