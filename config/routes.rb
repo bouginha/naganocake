@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 # admin
   devise_for :admins
 
-
   namespace :admins do
     resources :products_genres
     resources :products

@@ -1,7 +1,9 @@
 class MembersController < ApplicationController
 
   def show
-    # @member=Member.find()
+
+    @member = current_member
+
   end
 
   def edit
