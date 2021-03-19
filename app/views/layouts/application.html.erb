@@ -41,7 +41,7 @@
 
               <%elsif member_signed_in?%>
                 <li class="header">
-                  <%= link_to "マイページ",member_path, class: 'btn btn-light' %>                  
+                  <%= link_to "マイページ",member_path(current_member.id), class: 'btn btn-light' %>                  
                 </li>
                 <li class="header">
                   <%= link_to "商品一覧",products_path, class: 'btn btn-light' %>
