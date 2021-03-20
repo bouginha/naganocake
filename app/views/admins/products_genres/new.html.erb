@@ -5,22 +5,25 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0">商品登録フォーム</h5>
       <div class="form-body p-4">
-    
+
         <% if @products_genre.errors.any? %>
           <%= @products_genre.errors.count %>件のエラーが発生しました
           <% @products_genre.errors.full_messages.each do |message| %>
             <%= message %>
           <% end %>
         <% end %>
-        <%= form_with model: @products_genre, local:true do |f| %>
+        
+        <%= form_with model: @products_genre,url: admins_products_genres_path, local:true do |f| %>
 
           <div class="input-group mb-3 mt-4">
             <%= f.text_field :name, class:"form-control", placeholder:"ジャンル名" %>
           </div>
           
           <hr>
-          <%= f.submit '登録', class:"btn btn-lg btn-block btn-info mt-4" %>
+              <%= f.submit '登録', class:"btn btn-lg btn-block btn-info mt-4" %>
+          </hr>
         <% end %>
+          
       </div>
     </div>
   </div>
