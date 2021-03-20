@@ -1,6 +1,6 @@
 class Admins::ProductsGenresController < ApplicationController
         def new
-  
+
             @products_genre=ProductsGenre.new
         end
         def create
@@ -18,7 +18,7 @@ class Admins::ProductsGenresController < ApplicationController
         def index
 
             @products_genre=ProductsGenre.all
-            
+
 
         end
 
@@ -32,7 +32,7 @@ class Admins::ProductsGenresController < ApplicationController
         def update
         end
 
-     private   
+     private
         def products_genre_params
 
           params.require(:product_genre).permit(:name)
