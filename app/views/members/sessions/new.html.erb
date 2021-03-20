@@ -1,6 +1,14 @@
-<h2>Log in</h2>
+<h2>ログインは下記からお願いします。</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%#= render "members/shared/error_messages", resource: resource %>
+<%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%>
+
+<%= form_for(resource, as: resource_name, url: member_session_path) do |f| %>
+
+
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

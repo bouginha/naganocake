@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
 
 # admin
-  devise_for :admins
+  devise_for :admins, controllers: {
+  sessions: 'admins/sessions',
+  registrations: 'admins/registrations'}
 
   namespace :admins do
     resources :products_genres
@@ -15,7 +17,9 @@ Rails.application.routes.draw do
   end
     post 'admins/products_genres' => 'admins/products_genres#index'
 # member
-  devise_for :members
+  devise_for :members, controllers: {
+  sessions: 'members/sessions',
+  registrations: 'members/registrations'}
   resources :products, only: [:index, :show]
   resources :products_genres, only: [:index, :show]
 
@@ -27,6 +31,10 @@ Rails.application.routes.draw do
   get 'homes/top'
   get 'members/unsubscribe'
   patch 'members/withdraw'
+
+root to: 'homes#top'
+
+end
 
   # namespace :admins do
   #   resources :cart_products, only: [:index, :create, :update, :destroy, :all_destroy]
@@ -45,4 +53,3 @@ Rails.application.routes.draw do
   # end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
