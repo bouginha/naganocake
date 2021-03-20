@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
   resources :orders, only: [:show, :confirm, :create, :new, :thanks]
   get 'homes/top'
-
+  get 'members/unsubscribe'
+  patch 'members/withdraw'
 
   # namespace :admins do
   #   resources :cart_products, only: [:index, :create, :update, :destroy, :all_destroy]
