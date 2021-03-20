@@ -6,12 +6,13 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :products_genres
+    post 'products_genres' => 'products_genres#index'
     resources :products
     resources :admins, only: [:index, :show, :edit, :update]
     resources :ordered_products, only: [:update]
     get 'homes/top'
   end
-
+    post 'admins/products_genres' => 'admins/products_genres#index'
 # member
   devise_for :members
   resources :products, only: [:index, :show]
