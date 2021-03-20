@@ -9,7 +9,7 @@ class Admins::ProductsController < ApplicationController
             if @product.save
               redirect_to admins_products_path
             else
-   
+   binding.pry
               render :new
             end
         end
@@ -18,7 +18,7 @@ class Admins::ProductsController < ApplicationController
         end
         
         def index
-            @products=Product.all
+            @product=Product.all
             
         end
         

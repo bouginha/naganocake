@@ -13,6 +13,8 @@
           <% end %>
         <% end %>
         <%= form_with model: @product ,url: admins_products_path, local:true do |f| %>
+  
+
           <%= f.attachment_field :image%>
   
           <div class="input-group mb-3 mt-4">
@@ -25,6 +27,11 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">ジャンル</label>
             <%= f.collection_select :products_genre_id, ProductsGenre.all, :id, :name %>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">販売ステータス</label>
+            <%= f.select :is_active,{販売中:true, 販売停止:false} %>
           </div>
           
           <hr>
