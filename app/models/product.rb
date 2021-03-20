@@ -4,7 +4,7 @@ class Product < ApplicationRecord
    validates :name, presence: true
    validates :about, presence: true
    validates :image, presence: true
-   validates :normal_price, presence: true
+   validates :normal_price, presence: true,numericality: {only_integer: true}
    validates :products_genre_id, presence: true
 
 end
