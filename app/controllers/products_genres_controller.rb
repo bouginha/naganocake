@@ -1,4 +1,5 @@
 class ProductsGenresController < ApplicationController
+
   def show
   end
 

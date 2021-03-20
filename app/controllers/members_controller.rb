@@ -8,14 +8,29 @@ class MembersController < ApplicationController
   end
 
   def edit
+    @member = current_member
   end
 
   def update
+    @member = current_member
+    if @member.update(member_params)
+       redirect_to member_path
+    else
+      render :edit
+    end
   end
 
   def unsubscribe
+    @member = current_member
   end
 
   def withdraw
+    @member = Member.find(params[:id])
+        #is_deletedカラムにフラグを立てる(defaultはfalse)
+        @member.update(is_deleted: true)
+        #ログアウトさせる
+        reset_session
+        flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+        redirect_to root_path
   end
 end

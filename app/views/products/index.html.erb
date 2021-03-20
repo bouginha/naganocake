@@ -1,2 +1,60 @@
 <h1>Products#index</h1>
 <p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+  <div class="row">
+
+
+    <div class="col-md-8 offset-md-1">
+<h2>商品一覧</h2>
+ 
+<table class="table table-inverse">
+      <thead>
+    <tr>
+      <th></th>
+      <th>商品名</th>
+      <th>詳細</th>
+      <th>値段</th>
+      <th>ジャンル</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+    <% @products_genre.each do |products_genre| %>
+    
+	 	<%= link_to  products_genre_path(products_genre.id) do %>
+	 		<%= products_genre.name %>
+	 	<% end %>
+   	<% end %>
+  
+  
+      <% @products.each do |product| %>
+      <%if product.is_active>
+        <tr>
+          <td>
+            <%= attachment_image_tag product, :image, :fill, 60, 60, fallback: "no_image.jpg",size:"40x40"  %>
+          </td>
+          <td>
+            <%= link_to product_path(product) do %>
+                <p><%= product.name%></p>
+            <% end %>
+          </td>
+          <td>
+          <p><%= product.about%></p>
+          </td>
+          <td>
+          <p><%= product.normal_price%></p>
+          </td>
+          <td>
+          <p><%= product.products_genre.name%></p>
+          </td>
+        </tr>
+        <%else%>
+        <%end%>
+      <% end %>
+      </table>
+     </div>
+
+
+
+  </div>
+</div>

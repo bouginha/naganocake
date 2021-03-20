@@ -4,6 +4,7 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
         validates :email, uniqueness: true
         validates :encrypted_password, uniqueness: true
         validates :last_name, presence: true
@@ -14,3 +15,11 @@ class Member < ApplicationRecord
         validates :address, presence: true
         validates :telephone_number, presence: true
 end
+
+
+  # 退会
+#   def active_for_authentication?
+#     super && (self.is_deleted == false)
+#   end
+# end
+
