@@ -5,10 +5,11 @@ class Admins::ProductsGenresController < ApplicationController
         end
         def create
 
-            @products_genre=ProductsGenre.new(products_genre_params)
+            @products_genre=ProductsGenre.new(products_genre_params)   
             if @products_genre.save
-              redirect_to products_genres_path
+              redirect_to admins_products_genres_path
             else
+            
               render :new
             end
         end
@@ -35,6 +36,6 @@ class Admins::ProductsGenresController < ApplicationController
      private   
         def products_genre_params
 
-          params.require(:product_genre).permit(:name)
+          params.require(:products_genre).permit(:name)
         end
 end

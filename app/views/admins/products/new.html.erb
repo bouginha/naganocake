@@ -12,23 +12,24 @@
             <%= message %>
           <% end %>
         <% end %>
-        <%= form_with model: @product, local:true do |f| %>
-          <%= f.attachment_field :image, class: "w-100" %>
+        <%= form_with model: @product ,url: admins_products_path, local:true do |f| %>
+          <%= f.attachment_field :image%>
+  
           <div class="input-group mb-3 mt-4">
             <%= f.text_field :name, class:"form-control", placeholder:"商品名" %>
           </div>
+  
           <%= f.text_area :about, class:"form-control", rows:"3", placeholder:"商品詳細" %>
           <%= f.text_field :normal_price, class:"form-control", placeholder:"税抜価格" %>
           
           <div class="form-group">
             <label class="col-sm-2 control-label">ジャンル</label>
-            
-            
             <%= f.collection_select :products_genre_id, ProductsGenre.all, :id, :name %>
           </div>
           
           <hr>
           <%= f.submit '登録', class:"btn btn-lg btn-block btn-info mt-4" %>
+          </hr>
         <% end %>
       </div>
     </div>

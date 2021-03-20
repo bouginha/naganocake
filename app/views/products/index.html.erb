@@ -21,7 +21,7 @@
   
     <% @products_genre.each do |products_genre| %>
     
-	 	<%= link_to root_path(products_genre: products_genre.id) do %>
+	 	<%= link_to  products_genre_path(products_genre.id) do %>
 	 		<%= products_genre.name %>
 	 	<% end %>
    	<% end %>

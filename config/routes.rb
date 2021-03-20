@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :products_genres
     post 'products_genres' => 'products_genres#index'
     resources :products
+    post 'products' => 'products#index'
     resources :admins, only: [:index, :show, :edit, :update]
     resources :ordered_products, only: [:update]
     get 'homes/top'
