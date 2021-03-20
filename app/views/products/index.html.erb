@@ -28,7 +28,7 @@
   
   
       <% @products.each do |product| %>
-      <%if product.is_active>
+      <%if product.is_active%>
         <tr>
           <td>
             <%= attachment_image_tag product, :image, :fill, 60, 60, fallback: "no_image.jpg",size:"40x40"  %>
