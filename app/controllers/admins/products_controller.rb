@@ -9,7 +9,7 @@ class Admins::ProductsController < ApplicationController
             if @product.save
               redirect_to admins_products_path
             else
-   binding.pry
+
               render :new
             end
         end

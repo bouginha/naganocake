@@ -6,12 +6,7 @@
       <h5 class="text-dark bg-light p-4 mb-0">商品登録フォーム</h5>
       <div class="form-body p-4">
     
-        <% if @product.errors.any? %>
-          <%= @product.errors.count %>件のエラーが発生しました
-          <% @product.errors.full_messages.each do |message| %>
-            <%= message %>
-          <% end %>
-        <% end %>
+<%= render '/layouts/error', model: @product %>
         <%= form_with model: @product ,url: admins_products_path, local:true do |f| %>
   
 
