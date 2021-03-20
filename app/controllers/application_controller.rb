@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource_or_scope)
     if resource_or_scope == :admin
-      admins_homes_top_path
+      admin_session_path
     else
       homes_top_path
     end
