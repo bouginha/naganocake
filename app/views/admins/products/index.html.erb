@@ -40,6 +40,15 @@
           <td>
           <p><%= product.products_genre.name%></p>
           </td>
+          <%if product.is_active%>
+          <td>
+          <p class="btn btn-success">販売中</p>
+          </td>
+          <%else%>
+          <td>
+          <p class="btn btn-danger">販売停止</p>
+          </td>
+          <%end%>
         </tr>
       <% end %>
       </table>

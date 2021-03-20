@@ -28,11 +28,10 @@
   
   
       <% @products.each do |product| %>
+      <%if product.is_active>
         <tr>
           <td>
-
             <%= attachment_image_tag product, :image, :fill, 60, 60, fallback: "no_image.jpg",size:"40x40"  %>
-
           </td>
           <td>
             <%= link_to product_path(product) do %>
@@ -49,6 +48,8 @@
           <p><%= product.products_genre.name%></p>
           </td>
         </tr>
+        <%else%>
+        <%end%>
       <% end %>
       </table>
      </div>
