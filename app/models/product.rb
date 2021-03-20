@@ -1,4 +1,4 @@
 class Product < ApplicationRecord
-    belongs_to :product_genre
+    belongs_to :products_genre
    attachment :image
 end
