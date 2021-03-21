@@ -1,2 +1,35 @@
 <h1>CartProducts#index</h1>
 <p>Find me in app/views/cart_products/index.html.erb</p>
+<div class="containar">
+  <div class="row no-gutters">
+      
+    <table class="main">
+        <div class="col-md-7 col-sm-7 col-xs-7  p-5 rounded px-0 my-5">
+          <h5 class="text-dark bg-light p-4 mb-0">マイカート</h5>
+          <div class="form-body p-4 center-block">
+    <p>test</p>
+          </div>
+        </div>    
+    </table>
+    <table class="col-md-3 col-sm-3 col-xs-3 p-5 rounded px-0 my-5">
+ 
+      
+              <tr>
+              <td>
+                <%=link_to new_order_path do%>
+                    <center><h5 class="text-dark p-3 m-3 mb-0 btn btn-warning" style="width:150px">購入へ進む</h5></center>
+                <%end%>
+              </td>
+              </tr>
+              <tr>
+              <td>
+                <%=link_to homes_top_path do%>
+                  <center><h5 class="text-dark p-3 m-3 mb-0 btn btn-info" style="width:150px">買い物を続ける</h5></center>
+                <%end%>
+              </td>
+              </tr>
+      
+    </table>
+    
+      </div>
+    </div>
