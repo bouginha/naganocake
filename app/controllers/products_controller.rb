@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
   def show
+
     @cart_product = CartProduct.new
     @products_genre = ProductsGenre.all
     @product = Product.find(params[:id])
+
   end
 
   def index
