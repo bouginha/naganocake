@@ -22,14 +22,10 @@
       <% @product.each do |product| %>
         <tr>
           <td>
-
             <%= attachment_image_tag product, :image, :fill, 60, 60, fallback: "no_image.jpg",size:"40x40"  %>
-
           </td>
           <td>
-
             <p><%= product.name%></p>
-
           </td>
           <td>
           <p><%= product.about%></p>
@@ -40,9 +36,10 @@
           <td>
           <p><%= product.products_genre.name%></p>
           </td>
+
           <%if product.is_active%>
           <td>
-          <p class="btn btn-success">販売中</p>
+          <p class="btn btn-primary">販売中</p>
           </td>
           <%else%>
           <td>
