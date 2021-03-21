@@ -36,12 +36,11 @@
                   <%= link_to "商品ジャンル一覧", admins_products_genres_path , class: 'btn btn-light'%>
                 </li>
                 <li class="header">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-light' %>
+                  <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-light' %>
                 </li>
-
               <%elsif member_signed_in?%>
                 <li class="header">
-                  <%= link_to "マイページ",member_path(current_member.id), class: 'btn btn-light' %>                  
+                  <%= link_to "マイページ",member_path(current_member.id), class: 'btn btn-light' %>
                 </li>
                 <li class="header">
                   <%= link_to "商品一覧",products_path, class: 'btn btn-light' %>
@@ -50,21 +49,21 @@
                   <%= link_to "カート",cart_products_path, class: 'btn btn-light' %>
                 </li>
                 <li class="header">
-                  <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: 'btn btn-light' %>
-                </li>                
+                  <%= link_to "会員ログアウト", destroy_member_session_path, method: :delete, class: 'btn btn-light' %>
+                </li>
                 <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-success" %>
               <%else%>
                 <li class="header">
-                  
+
                 </li>
                 <li class="header">
-                  
-                </li>              
-                <li class="header">
-                  <%= link_to "新規登録", new_member_registration_path , class: 'btn btn-light'%>
+
                 </li>
                 <li class="header">
-                  <%= link_to "ログイン", new_member_session_path , class: 'btn btn-light'%>
+                  <%= link_to "会員新規登録", new_member_registration_path , class: 'btn btn-light'%>
+                </li>
+                <li class="header">
+                  <%= link_to "会員ログイン", new_member_session_path , class: 'btn btn-light'%>
                 </li>
                 <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-success" %>
             <% end %>

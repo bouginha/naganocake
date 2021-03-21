@@ -1,4 +1,14 @@
 class ApplicationController < ActionController::Base
+before_action :authenticate_any!
+
+def authenticate_any!
+    if admin_signed_in?
+        true
+    else
+        authenticate_member!
+    end
+end
+
 
 before_action :configure_permitted_parameters, if: :devise_controller?
 
