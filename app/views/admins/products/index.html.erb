@@ -28,7 +28,10 @@
           </td>
           <td>
 
-            <p><%= product.name%></p>
+            <p><%= link_to admins_product_path(product), class: "btn-link" do %>
+                <%= product.name %>
+              <% end %>
+            </p>
 
           </td>
           <td>
