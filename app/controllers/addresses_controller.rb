@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   def index
     @address = Address.new
-    @addresses = current_member.addresses
+    @addresses = Address.all
   end
 
   def create
