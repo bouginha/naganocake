@@ -12,10 +12,10 @@
   <div class="row mx-auto mt-3">
     <span class="brown-border text-center"><%= link_to "すべての商品", products_path %></span>
   </div>
-    <% @products_genre.each do |genre| %>
-      <%= link_to products_genres_path do %>
+    <% @products_genre.each do |products_genre| %>
+      <%= link_to products_genre_path(products_genre.id) do %>
         <div class="row mx-auto mt-3">
-          <span class="brown-border text-center"><%= @product.products_genre.name%></span>
+          <span class="brown-border text-center"><%= products_genre.name%></span>
         </div>
       <% end %>
     <% end %>
