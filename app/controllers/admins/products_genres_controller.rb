@@ -9,7 +9,6 @@ class Admins::ProductsGenresController < ApplicationController
             if @products_genre.save
               redirect_to admins_products_genres_path
             else
-
               render :new
             end
         end
@@ -31,14 +30,17 @@ class Admins::ProductsGenresController < ApplicationController
         end
 
         def update
-          @products_genre = ProductsGenre.find(params[:id])
-          @products_genre.update(products_genre_params)
-          redirect_to admins_products_genres_path
+              @products_genre = ProductsGenre.find(params[:id])
+
+            if @products_genre.update(products_genre_params)
+              redirect_to admins_products_genres_path
+            else
+              render :edit
+            end
         end
 
      private
         def products_genre_params
-
           params.require(:products_genre).permit(:name)
         end
 end

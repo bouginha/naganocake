@@ -24,6 +24,11 @@
           <td>
             <p><%= products_genre.name%></p>
           </td>
+          <td>
+            <%= link_to edit_admins_products_genre_path(products_genre) do %>
+              <p class="btn btn-success">edit</p>
+            <% end %>
+          </td>
         </tr>
       <% end %>
       </table>
