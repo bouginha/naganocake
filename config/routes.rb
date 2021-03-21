@@ -29,7 +29,7 @@ get 'admins/homes/top'
   resources :addresses, only: [:index, :edit, :update, :create, :destroy]
 
   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
-  resources :orders, only: [:show, :confirm, :create, :new, :thanks]
+  resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
   get 'homes/top'
   get 'members/unsubscribe'
   patch 'members/withdraw'
