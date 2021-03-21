@@ -5,7 +5,7 @@ class Admins::ProductsGenresController < ApplicationController
         end
         def create
 
-            @products_genre=ProductsGenre.new(products_genre_params)   
+            @products_genre=ProductsGenre.new(products_genre_params)
             if @products_genre.save
               redirect_to admins_products_genres_path
             else

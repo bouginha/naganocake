@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+get 'admins/homes/top'
+
 # admin
   devise_for :admins, controllers: {
   sessions: 'admins/sessions',
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
     post 'products' => 'products#index'
     resources :admins, only: [:index, :show, :edit, :update]
     resources :ordered_products, only: [:update]
-    get 'homes/top'
+
   end
     post 'admins/products_genres' => 'admins/products_genres#index'
 # member
