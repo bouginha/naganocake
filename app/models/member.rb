@@ -6,14 +6,19 @@ class Member < ApplicationRecord
 
 
         validates :email, uniqueness: true
-        validates :encrypted_password, uniqueness: true
+        validates :encrypted_password, uniqueness: true ,confirmation: true
         validates :last_name, presence: true
         validates :first_name, presence: true
-        validates :last_name_kana, presence: true
-        validates :first_name_kana, presence: true
-        validates :postal_code, presence: true
+        validates :last_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+        validates :first_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+        validates :postal_code, format: /\A[0-9]+\z/ ,presence: true
         validates :address, presence: true
-        validates :telephone_number, presence: true
+        validates :telephone_number, format:/\A[0-9]+\z/ ,presence: true
+
+  def full_name
+    first_name + last_name
+  end
+
 end
 
 

@@ -1,5 +1,6 @@
 class Admins::AdminsController < ApplicationController
 
+
   #会員一覧画面
   def index
     @members = Member.all
