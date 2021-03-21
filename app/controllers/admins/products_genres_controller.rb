@@ -1,7 +1,7 @@
 class Admins::ProductsGenresController < ApplicationController
         def new
 
-            @products_genre=ProductsGenre.new
+          @products_genre=ProductsGenre.new
         end
         def create
 
@@ -9,36 +9,34 @@ class Admins::ProductsGenresController < ApplicationController
             if @products_genre.save
               redirect_to admins_products_genres_path
             else
-
               render :new
             end
         end
+
         def show
         end
 
         def index
-
-            @products_genre=ProductsGenre.all
-
-
+          @products_genre=ProductsGenre.all
         end
 
         def edit
           @products_genre = ProductsGenre.find(params[:id])
+
         end
 
         def update
-          @products_genre = ProductsGenre.find(params[:id])
-          @products_genre.update(products_genre_params)
-          redirect_to admins_products_genres_path
-        end
-
-        def destroy
+              @products_genre = ProductsGenre.find(params[:id])
+            if @products_genre.update(products_genre_params)
+              redirect_to admins_products_genres_path
+            else
+              @products_genre = ProductsGenre.find(params[:id])
+              render :edit
+            end
         end
 
      private
         def products_genre_params
-
           params.require(:products_genre).permit(:name)
         end
 end

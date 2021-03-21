@@ -3,7 +3,7 @@
 
 <div class="container">
   <div class="row">
-      
+
 
     <div class="col-md-8 offset-md-1">
 <h2>ジャンル一覧</h2>
@@ -20,16 +20,18 @@
 
           <td>
             <p><%= products_genre.id%></p>
-          </td>        
+          </td>
           <td>
             <p><%= products_genre.name%></p>
+          </td>
+          <td>
+            <%= link_to edit_admins_products_genre_path(products_genre) do %>
+              <p class="btn btn-success">edit</p>
+            <% end %>
           </td>
         </tr>
       <% end %>
       </table>
      </div>
-
-
-  
   </div>
-</div>  
+</div>
