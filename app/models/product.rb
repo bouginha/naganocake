@@ -7,4 +7,7 @@ class Product < ApplicationRecord
    validates :normal_price, presence: true,numericality: {only_integer: true}
    validates :products_genre_id, presence: true
 
+   # 今日投稿された Product を取得
+  #scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
+
 end

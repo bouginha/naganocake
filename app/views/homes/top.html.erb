@@ -1,20 +1,44 @@
 <div style = "text-align: center">
-
-		<h1>長野県にある小さな洋菓子店「ながのCAKE」の通販サイトです。</br>
-		下記から商品を検索ください。</h1>
-
+		<h1>長野県にある小さな洋菓子店「ながのCAKE」の通販サイトです。</h1>
 	</div>
 
+</br>
 
-新着商品一覧(何件）
-商品をクリック→　商品詳細ページへ遷移
-<%#= link_to 'マイページ', product_path(product.id) %>
+<h2>新着商品が
+					<%= @count %>
+				<span>件あります</span></h2>
+
+
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>商品画像</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @Products.each do |product|%>
+      <tr>
+        <td><%= link_to product.name, product_path(product.id) %></td>
+        <td><%= link_to product_path(product.id) do %>
+          <%= attachment_image_tag product, :image, style: "width: 200px;" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
 
-ジャンル検索リンク
-ジャンル検索リンクをクリック→　商品一覧ページへ遷移
-<%= link_to 'ジャンル検索リンク', products_path %>
+
+
+
+
+</br>
+
+<h2><%= link_to '商品一覧ページはこちらから', products_path %></h2>
 
 
 
