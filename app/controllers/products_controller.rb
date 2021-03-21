@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
   def show
-    @products=Product.find(params[:id])
 
+    @cart_product = CartProduct.new
+    @products_genre = ProductsGenre.all
+    @product = Product.find(params[:id])
 
   end
 
@@ -9,8 +11,8 @@ class ProductsController < ApplicationController
     @products=Product.all
     @products_genre = ProductsGenre.all
   end
-  
-  private   
+
+  private
     def product_params
       params.require(:product).permit(:name,:about,:image,:normal_price,:products_genre_id,:is_active)
     end
