@@ -5,11 +5,11 @@ class Admins::ProductsGenresController < ApplicationController
         end
         def create
 
-            @products_genre=ProductsGenre.new(products_genre_params)   
+            @products_genre=ProductsGenre.new(products_genre_params)
             if @products_genre.save
               redirect_to admins_products_genres_path
             else
-            
+
               render :new
             end
         end
@@ -31,6 +31,9 @@ class Admins::ProductsGenresController < ApplicationController
         end
 
         def update
+          @products_genre = ProductsGenre.find(params[:id])
+          @products_genre.update(products_genre_params)
+          redirect_to admins_products_genres_path
         end
 
      private
