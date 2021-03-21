@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   def show
-    @products=Product.find(product_params)
+    @products=Product.find(params[:id])
 
-    
+
   end
 
   def index
