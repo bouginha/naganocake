@@ -35,7 +35,6 @@ class Admins::ProductsGenresController < ApplicationController
 
      private
         def products_genre_params
-
           params.require(:products_genre).permit(:name)
         end
 end
