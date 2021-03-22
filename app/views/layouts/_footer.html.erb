@@ -1,0 +1,39 @@
+<style>
+	.link_box {
+		position: absolute;
+		top: 10px;
+		right: 40px;
+		text-align: center;
+	}
+
+	.icon {
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		margin-right: 10px;
+		margin-top: 5px;
+	}
+
+	p {
+		color: #836159;
+	}
+</style>
+
+<div style="width:100%; position:relative;">
+
+	<div class="link_box">
+		<span id="text">share us!</span><br>
+		 <%= link_to '/' do %>
+		<i class="fab fa-facebook-square"></i>
+		 <% end %>
+		 <%= link_to '/' do %>
+			<i class="fab fa-twitter-square"></i>
+		<% end %>
+		<%= link_to '/' do %>
+			<i class="fab fa-instagram"></i>
+		<% end %>
+	</div>
+
+	<p class="text-center">(c) all rights naganocake & team 棒銀派</p>
+
+</div>
