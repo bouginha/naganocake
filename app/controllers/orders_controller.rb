@@ -10,9 +10,14 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new(member_id: @member.id)
+    if @order.save 
+    else
+    end
   end
 
   def new
+    @cart_products=current_member.cart_products
     @order=Order.new
     @member = current_member
 		if @member.cart_products.blank?
