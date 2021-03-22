@@ -1,4 +1,5 @@
 class Admins::ProductsGenresController < ApplicationController
+  before_action :authenticate_admin!
         def new
 
           @products_genre=ProductsGenre.new

@@ -1,5 +1,5 @@
 class Admins::AdminsController < ApplicationController
-
+before_action :authenticate_admin!
 
   #会員一覧画面
   def index
