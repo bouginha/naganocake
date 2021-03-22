@@ -1,6 +1,6 @@
 class CartProductsController < ApplicationController
   def index
-    @cart_products=CartProduct.all
+    @cart_products=current_member.cart_products
     # @cart_product = CartProduct.new(cart_product_params)
   end
 
