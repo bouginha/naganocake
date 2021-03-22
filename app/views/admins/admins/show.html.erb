@@ -7,7 +7,7 @@
 	  <tr>
       <th>顧客ID</th>
       <td><%= @member.id %>
-      <% if @member.withdrawal_status == "有効" %>
+      <% if @member.is_deleted == "有効" %>
         <div class="label label-primary">有効会員</div>
       <% else %>
         <div class="label label-danger">退会済み</div>
@@ -39,6 +39,6 @@
       <td><%= @member.email %></td>
     </tr>
   </table>
-    <%= link_to "編集する", edit_admin_member_path(@member), class:"btn btn-primary" %>
-    <%= link_to "注文履歴一覧", admin_orders_path(@member.id), class:"btn btn-primary" %>
+    <%= link_to "編集する",  edit_admins_admin_path(@member.id), class:"btn btn-primary" %>
+    <%= link_to "注文履歴一覧", admins_homes_top_path(@member.id), class:"btn btn-primary" %>
 </div>

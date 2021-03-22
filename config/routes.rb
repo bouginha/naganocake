@@ -32,9 +32,9 @@ get 'admins/homes/top'
   get 'homes/top'
   get 'members/unsubscribe'
   patch 'members/withdraw'
-  
+
   delete :cart_products, to: 'cart_products#all_destroy'
-  
+
 root to: 'homes#top'
 
 end
