@@ -2,8 +2,11 @@ class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    if params[:day]
-      @orders = Order.created_today
+    @path = Rails.application.routes.recognize_path(request.referer)
+
+    if @path[:action] == "show"
+      @member = Member.find(@path[:id])
+      @orders = @member.orders.page(params[:page])
     else
       @orders = Order.all
     end
