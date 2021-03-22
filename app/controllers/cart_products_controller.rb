@@ -4,7 +4,7 @@ class CartProductsController < ApplicationController
 #退会済みユーザーは閲覧不可
   before_action :member_is_deleted
   def index
-    @cart_products=CartProduct.all
+    @cart_products=current_member.cart_products
     # @cart_product = CartProduct.new(cart_product_params)
   end
 
