@@ -3,13 +3,33 @@
 <div class="containar">
   <div class="row no-gutters">
       
-    <table class="main">
-        <div class="col-md-7 col-sm-7 col-xs-7  p-5 rounded px-0 my-5">
-          <h5 class="text-dark bg-light p-4 mb-0">マイカート</h5>
-          <div class="form-body p-4 center-block">
-    <p>test</p>
-          </div>
-        </div>    
+    <table class="col-md-7 col-sm-7 col-xs-7 p-3 mx-auto rounded px-0 my-5">
+      <h3>マイカート</h3>
+          <thead>
+            <tr>
+              <th class="m-2">商品名</th>
+              <th>個数</th>
+              <th>単価</th>
+              <th colspan="3">小計</th>
+             
+            </tr>
+          </thead>  
+            <% @cart_products.each do |cart_product| %>
+              <tr>
+                <td><%=cart_product.product.name%></td>
+                <td><%=cart_product.quantity%></td>
+                <td><%=cart_product.price%></td>                
+                <td><%=(cart_product.price*cart_product.quantity)%></td>
+
+                <td>
+                  <%=link_to cart_product_path(cart_product), method: :delete do%>
+                    <h5 class="text-dark p-3 mb-0 btn btn-danger">カートから出す</h5>
+                  <%end%>
+                </td>
+              </tr>
+            
+            <%end%>
+     
     </table>
     <table class="col-md-3 col-sm-3 col-xs-3 p-5 rounded px-0 my-5">
  
@@ -17,18 +37,24 @@
               <tr>
               <td>
                 <%=link_to new_order_path do%>
-                    <center><h5 class="text-dark p-3 m-3 mb-0 btn btn-warning" style="width:150px">購入へ進む</h5></center>
+                    <center><h5 class="text-dark p-3 m-0 mb-0 btn btn-warning" style="width:200px">購入へ進む</h5></center>
                 <%end%>
               </td>
               </tr>
               <tr>
               <td>
                 <%=link_to homes_top_path do%>
-                  <center><h5 class="text-dark p-3 m-3 mb-0 btn btn-info" style="width:150px">買い物を続ける</h5></center>
+                  <center><h5 class="text-dark p-3 m-3 mb-0 btn btn-info" style="width:200px">買い物を続ける</h5></center>
                 <%end%>
               </td>
               </tr>
-      
+              <tr>
+              <td>
+                <%=link_to cart_products_path, method: :delete do%>
+                  <center><h5 class="text-dark p-3 m-3 mb-0 btn btn-danger" style="width:200px">カートを空にする</h5></center>
+                <%end%>
+              </td>
+              </tr>
     </table>
     
       </div>
