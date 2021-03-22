@@ -58,6 +58,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @cart_products=current_member.cart_products
     @order=Order.new
     @member = current_member
 		if @member.cart_products.blank?
