@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
     belongs_to :products_genre
+    has_many :cart_products
    attachment :image
    validates :name, presence: true
    validates :about, presence: true
