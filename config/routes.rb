@@ -15,7 +15,6 @@ get 'admins/homes/top'
     post 'products' => 'products#index'
     resources :admins, only: [:index, :show, :edit, :update]
     resources :ordered_products, only: [:update]
-
   end
     post 'admins/products_genres' => 'admins/products_genres#index'
 # member
