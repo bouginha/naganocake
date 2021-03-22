@@ -1,4 +1,8 @@
 class AddressesController < ApplicationController
+  #ログインユーザーのみ閲覧可
+  before_action :authenticate_member!
+#退会済みユーザーは閲覧不可
+  before_action :member_is_deleted
   def index
     @address = Address.new
     @addresses = Address.all
@@ -31,4 +35,10 @@ class AddressesController < ApplicationController
   def address_params
   	params.require(:address).permit(:name, :member_id, :address, :postal_code)
   end
+   #退会済みユーザーへの対応
+    def member_is_deleted
+      if member_signed_in? && current_member.is_deleted?
+         redirect_to root_path
+      end
+    end
 end

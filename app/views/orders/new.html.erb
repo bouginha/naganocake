@@ -1,2 +1,77 @@
 <h1>Orders#new</h1>
 <p>Find me in app/views/orders/new.html.erb</p>
+<div class="row" style="width: 60%; margin: 20px auto;">
+<h4>購入情報入力</h4>
+<hr>
+<%= form_for(@order) do |f| %>
+	<%= f.hidden_field :member_id %>
+	<div class="form-group">
+		<label><span class="glyphicon glyphicon-stop"></span>お支払い方法</label>
+			<p class="text">ご希望のお支払い方法を選択してください。</p>
+		<div class="radio">
+			<label><%= f.radio_button :payment_method, :クレジットカード %>クレジットカード</label>
+		</div>
+		<div class="radio">
+			<label><%= f.radio_button :payment_method, :銀行振込 %>銀行振込</label>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label><span class="glyphicon glyphicon-stop"></span>お届け先</label>
+		  <p class="text">ご希望のお届け先を選択してください。</p>
+		<!-- 自宅 -->
+		<div class="radio">
+			<label>
+				<%= radio_button_tag("_add", "membersAdd") %>ご自身の住所:
+			</label>
+			<span>〒<%= current_member.postal_code %> <%= current_member.address %></span>
+		</div>
+
+
+		<!-- 登録した配送先 -->
+		<div class="radio">
+			<label><%= radio_button_tag("_add", "shipAdds") %>登録済住所から選択</label>
+		</div>
+			<%= collection_select(:ShipToAddress, :id, @ads, :id, :address) %>
+
+		<!-- 新しく配送先を設定-->
+		<div class="radio">
+			<label>
+				<%= radio_button_tag("_add", "newAdd") %>
+				新しいお届け先
+			</label>
+		</div>
+
+		<div id="form">
+			<p class="text">ご希望のお届け先を入力してください。</p>
+			<%= fields_for :ship do |a| %>
+
+		<div class="form-group">
+			<label for="inputPostalCode">郵便番号</label>
+				<%= a.text_field :postal_code, class:"form-control", id:"inputPostalCode", style:"width:30%;" %>
+		</div>
+
+		<div class="form-group">
+			<label for="inputAddress">住所</label>
+				<%= a.text_field :shipping_address, class:"form-control", id:"inputAddress", style:"width:70%;" %>
+		</div>
+
+		<div class="form-group">
+			<label>配送先氏名</label>
+			<div>
+				<%= a.text_field :delivery_name, class:"form-control col-xs-4", style:"width:30%;" %>
+
+			</div>
+		</div>
+
+
+			<% end %>
+		</div>
+	</div>
+
+	<hr>
+	<div class="text-center">
+		<%= f.submit '登録する', class:"btn btn-success" %>
+	</div>
+<% end %>
+</div>

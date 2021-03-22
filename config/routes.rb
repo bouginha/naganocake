@@ -30,7 +30,7 @@ get 'admins/homes/top'
   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
   resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
   get 'homes/top'
-  get 'members/unsubscribe'
+  get 'homes/about'
   patch 'members/withdraw'
 
   delete :cart_products, to: 'cart_products#all_destroy'
