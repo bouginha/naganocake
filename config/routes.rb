@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
   resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
+  post 'order/confirm' => 'orders#confirm'
   get 'homes/top'
   get 'homes/about'
   patch 'members/withdraw'
