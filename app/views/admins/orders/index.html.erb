@@ -1,6 +1,3 @@
-<p>注文履歴一覧（管理者Topページ）</p>
-
-<h4>ログイン後/ヘッダーから遷移した場合  →  全会員の注文履歴</h4>
 
 <!-- 注文一覧画面 -->
 <div  style="width:60%; margin:0 auto;">
@@ -8,15 +5,15 @@
 
 <table class="table table-bordered">
   	<tr>
-  		<th>購入日時</th>
-  		<th>購入者</th>
+  		<th>注文日時</th>
+  		<th>注文者</th>
   		<th>注文個数</th>
-  		<th>ステータス</th>
+  		<th>注文ステータス</th>
   	</tr>
 
     <% @orders.each do |order| %>
   	<tr>
-  	  <td><%= link_to order[:created_at].strftime("%Y-%m-%d %H:%M"), admins_orders_path(order) %></td>
+  	  <td><%= link_to order[:created_at].strftime("%Y-%m-%d %H:%M"), admins_order_path(order) %></td>
   		<td><%= order.user.last_name %><%= order.user.first_name %></td>
   		<td><%= order.ordered_items.sum(:quantity) %></td>
   		<td><% case order.deposit_status when "入金待ち" %>
@@ -30,9 +27,3 @@
     <% end %>
   </table>
 
-
-<h4>会員詳細ページから該当会員のみの注文履歴をクリック  →  該当会員のみの注文履歴一覧へ遷移</h4>
-
-
-
-<h4>購入日時をクリック  →  注文履歴詳細画面へ遷移</h4>

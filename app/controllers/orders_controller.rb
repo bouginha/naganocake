@@ -3,8 +3,7 @@ class OrdersController < ApplicationController
 	before_action :authenticate!
 #退会済みユーザーは閲覧不可
  	before_action :member_is_deleted
-#param[:id]が取得できない場合、閲覧不可
- 	before_action :params_check, only: [:show]
+
   def index
     @orders = Order.all
   end
