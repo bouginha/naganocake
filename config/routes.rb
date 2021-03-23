@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
   get 'homes/top'
   get 'homes/about'
+  get 'members/unsubscribe'
   patch 'members/withdraw'
 
   delete :cart_products, to: 'cart_products#all_destroy'
