@@ -2,14 +2,14 @@
 <p>Find me in app/views/admins/products_genres_genres/new.html.erb</p>
 <div class="containar">
   <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+    <table class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0">商品登録フォーム</h5>
       <div class="form-body p-4">
 
 
   <%= render 'layouts/error', model: @products_genre %>
         
-        <%= form_with model: @products_genre,url: admins_products_genres_path, local:true do |f| %>
+        <%= form_with model: @products_genre_new,url: admins_products_genres_path, local:true do |f| %>
 
 
           <div class="input-group mb-3 mt-4">
@@ -22,6 +22,6 @@
         <% end %>
           
       </div>
-    </div>
+    </table>
   </div>
 </div>
