@@ -13,10 +13,23 @@ class OrdersController < ApplicationController
 
   def confirm
   			# params[:order][:address_op]
-  		@order=Order.new
-  		@order.payment_method = params[:payment_method]
+    @order=Order.new
+  	@order.payment_method = params[:payment_method]
 		@member = current_member
 		@ads = @member.addresses
+		@orderparams = Order.find(params[:id])
+		@items = @orderparams.ordered_items
+
+		#ordered_itemにデータ挿入
+			item = []
+			@items = @member.cart_products
+				@items.each do |i|
+					item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
+				end
+			OrderedItem.import item
+
+
+
 			# binding.pry
 			if params[:address_op]	== "1"
 				@order.address = @member.address
@@ -41,22 +54,13 @@ class OrdersController < ApplicationController
 				# @order.postal_code = params[:address_op][:postal_code]
 			end
 			render :confirm
-			
-	
-
   end
 
   def create
     # 情報の保存
-
-		if @order.save
-			redirect_to orders_path
-		else
-			# binding.pry
-				redirect_to products_path
-		# render :refere
-		end
-  end
+		@order.save
+		redirect_to orders_thanks_path
+	end
 
   def new
     @cart_products=current_member.cart_products
@@ -99,13 +103,13 @@ class OrdersController < ApplicationController
     	end
     end
     private
-    
 
-    
+
+
     def order_params
 	 	params.require(:order).permit(
 	 		:member_id, :payment_method, :address, :postal_code,
 	 		address:[:postal_code, :address, :name, :member_is]
-	 		)    
+	 		)
     end
 end
