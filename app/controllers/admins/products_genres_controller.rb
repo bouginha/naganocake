@@ -11,6 +11,7 @@ class Admins::ProductsGenresController < ApplicationController
               redirect_to admins_products_genres_path
             else
               @products_genre=ProductsGenre.all
+              binding.pry
               render :index
             end
         end
