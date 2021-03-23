@@ -2,8 +2,9 @@ class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    if params[:day]
-      @orders = Order.created_today
+    if params[:member_id]
+       @member = Member.find(params[:member_id])
+       @orders = @member.orders.page(params[:page]).reverse_order
     else
       @orders = Order.all
     end

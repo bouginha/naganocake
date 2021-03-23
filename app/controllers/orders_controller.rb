@@ -12,12 +12,54 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+  			# params[:order][:address_op]
+  		@order=Order.new
+  		@order.payment_method = params[:payment_method]
+		@member = current_member
+		@ads = @member.addresses
+			# binding.pry
+			if params[:address_op]	== "1"
+				@order.address = @member.address
+				@order.postal_code = @member.postal_code
+			elsif params[:address_op] == "2"
+				@ad = @ads.find(params[:Address][:id])
+				@order.address = @ad.address
+				@order.postal_code = @ad.postal_code
+			elsif params[:address_op] == "3"
+				# #addressテーブルに保存させる
+				# @ad = Address.new
+				# @ad.member_id = @member.id
+				# # @ad.address = params[:address_op][:address]
+				# # @ad.name = params[:address][:name]
+
+				# @ad.postal_code = params[:address_op][:postal_code]
+				# # @ad.phone = params[:address][:telephone]
+				# @ad.save
+
+				# @order.address = params[:address_op][:address]
+
+				# @order.postal_code = params[:address_op][:postal_code]
+			end
+			render :confirm
+			
+	
+
   end
 
   def create
+    # 情報の保存
+
+		if @order.save
+			redirect_to orders_path
+		else
+			# binding.pry
+				redirect_to products_path
+		# render :refere
+		end
   end
 
   def new
+    @cart_products=current_member.cart_products
     @order=Order.new
     @member = current_member
 		if @member.cart_products.blank?
@@ -55,5 +97,15 @@ class OrdersController < ApplicationController
     	if params[:id].nil?
     		redirect_to root_path
     	end
+    end
+    private
+    
+
+    
+    def order_params
+	 	params.require(:order).permit(
+	 		:member_id, :payment_method, :address, :postal_code,
+	 		address:[:postal_code, :address, :name, :member_is]
+	 		)    
     end
 end

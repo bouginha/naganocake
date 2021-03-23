@@ -2,22 +2,22 @@
 <p>Find me in app/views/admins/orders/show.html.erb</p>
 
 <div class="row" style="width:60%; margin:0 auto;">
-<%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
+<%= form_for(@order, url:admins_orders_path(@order), method: :patch) do |f| %>
 <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文詳細画面</h4>
 
 	<table class="table table-bordered">
 		<tr>
-			<th>購入者</th>
-			<td><%= link_to  admins_user_path(@order.id) do %>
-					<%= @order.user.last_name %>
-					<%= @order.user.first_name %>
+			<th>注文者名	</th>
+			<td><%= link_to  admins_member_path(@order.id) do %>
+					<%= @order.member.last_name %>
+					<%= @order.member.first_name %>
 					<% end %>
 			</td>
 		</tr>
 		<tr>
 			<th>配送先</th>
-			<td><%= @order.ship_postal_code %>
-					<%= @order.ship_address %>
+			<td><%= @order.postal_code %>
+					<%= @order.address %>
 					<br>
 					<%= @order.last_name %>
 					<%= @order.first_name %>
@@ -25,7 +25,7 @@
 		</tr>
 		<tr>
 			<th>支払方法</th>
-			<td><%= @order.payment %></td>
+			<td><%= @order.payment_method %></td>
 		</tr>
 		<tr>
 			<th>注文ステータス</th>
@@ -42,7 +42,7 @@
 			<th>単価(税込)</th>
 			<th>数量</th>
 			<th>小計</th>
-			<th>制作ステータス</th>
+			<th>製作ステータス</th>
 		</tr>
 
 
