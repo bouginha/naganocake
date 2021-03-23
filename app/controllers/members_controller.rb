@@ -2,8 +2,8 @@ class MembersController < ApplicationController
 
   #ログインユーザーのみ
   before_action :authenticate_member!
-#退会済みユーザー
-  #before_action :member_is_deleted
+ #退会済みユーザー
+  before_action :member_is_deleted
 
 
 
