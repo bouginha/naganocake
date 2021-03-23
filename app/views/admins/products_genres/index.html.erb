@@ -6,8 +6,33 @@
 
 
     <div class="col-md-8 offset-md-1">
+      
+            
+          <table class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">商品登録フォーム</h5>
+      <div class="form-body p-4">
+
+
+  <%= render 'layouts/error', model: @products_genre_new %>
+        
+        <%= form_with model: @products_genre_new,url: admins_products_genres_path, local:true do |f| %>
+
+
+          <div class="input-group mb-3 mt-4">
+            <%= f.text_field :name, class:"form-control", placeholder:"ジャンル名" %>
+          </div>
+
+          <hr>
+              <%= f.submit '登録', class:"btn btn-lg btn-block btn-info mt-4" %>
+          </hr>
+        <% end %>
+          
+      </div>
+    </table>
 <h2>ジャンル一覧</h2>
- <%= link_to "新規登録",new_admins_products_genre_path %>
+
+ 
+ 
 <table class="table table-inverse">
       <thead>
     <tr>
@@ -32,6 +57,7 @@
         </tr>
       <% end %>
       </table>
+
      </div>
   </div>
 </div>

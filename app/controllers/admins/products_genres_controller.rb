@@ -6,11 +6,12 @@ class Admins::ProductsGenresController < ApplicationController
         end
         def create
 
-            @products_genre=ProductsGenre.new(products_genre_params)
-            if @products_genre.save
+            @products_genre_new=ProductsGenre.new(products_genre_params)
+            if @products_genre_new.save
               redirect_to admins_products_genres_path
             else
-              render :new
+              @products_genre=ProductsGenre.all
+              render :index
             end
         end
 
@@ -18,6 +19,7 @@ class Admins::ProductsGenresController < ApplicationController
         end
 
         def index
+          @products_genre_new=ProductsGenre.new
           @products_genre=ProductsGenre.all
         end
 
