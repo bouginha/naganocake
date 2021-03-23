@@ -22,10 +22,9 @@ class OrdersController < ApplicationController
 				@order.address = @member.address
 				@order.postal_code = @member.postal_code
 			elsif params[:address_op] == "2"
-				# @ad = @ads.find(params[:Address][:id])
-				# @order.address = @ad.address
-
-				# @order.postal_code = @ad.postal_code
+				@ad = @ads.find(params[:Address][:id])
+				@order.address = @ad.address
+				@order.postal_code = @ad.postal_code
 			elsif params[:address_op] == "3"
 				# #addressテーブルに保存させる
 				# @ad = Address.new
