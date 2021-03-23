@@ -1,7 +1,6 @@
 class CartProductsController < ApplicationController
   def index
     @cart_products=current_member.cart_products
-
   end
 
   def create

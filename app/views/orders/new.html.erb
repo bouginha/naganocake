@@ -36,20 +36,21 @@
 </tr>
 </th>
     </table>
-    <table class="col-md-4 col-sm-4 col-xs-4 p-5 rounded px-0 my-5">
 
 
-<%= form_with model:@order do |f| %>
+
+<%= form_with url:order_confirm_path,class:"col-md-4 col-sm-4 col-xs-4 p-5 px-0 my-5",local:true do |f| %>
+    <table>
 	<%= f.hidden_field :member_id %>
 	<tr><td>
 	<div class="form-group">
 		<label>お支払い方法</label>
 			<p class="text">ご希望のお支払い方法を選択してください。</p>
 		<div class="radio">
-			<label><%= f.radio_button :payment_method, :クレジットカード %>クレジットカード</label>
+			<label><%= f.radio_button("payment_method","0") %>クレジットカード</label>
 		</div>
 		<div class="radio">
-			<label><%= f.radio_button :payment_method, :銀行振込 %>銀行振込</label>
+			<label><%= f.radio_button("payment_method","1") %>銀行振込</label>
 		</div>
 	</div>
 	</td>
@@ -61,7 +62,7 @@
 		<!-- 自宅 -->
 		<div class="radio">
 			<label>
-				<%= radio_button_tag("_add", "membersAdd") %>ご自身の住所:
+				<%= f.radio_button :address_op, 1 %>ご自身の住所:
 			</label>
 			<span>〒<%= current_member.postal_code %> <%= current_member.address %></span>
 		</div>
@@ -69,7 +70,7 @@
 		
 		<!-- 登録した配送先 -->
 		<div class="radio">
-			<label><%= radio_button_tag("_add", "shipAdds") %>登録済住所から選択</label>
+			<label><%= f.radio_button :address_op, 2 %>登録済住所から選択</label>
 		</div>
 
 			<%= f.collection_select(:member_id,@add,:id,:address) %>
@@ -77,7 +78,7 @@
 		<!-- 新しく配送先を設定-->
 		<div class="radio">
 			<label>
-				<%= radio_button_tag("_add", "newAdd") %>
+				<%= f.radio_button :address_op, 3 %>
 				新しいお届け先
 			</label>
 		</div>
@@ -104,12 +105,13 @@
 			
 		<tr><td>
 	<div class="text-center">
-		<%= f.submit '登録する', class:"btn btn-success" %>
+		<%= f.submit '確認画面へ進む', class:"btn btn-success" %>
 	</div>
-<%end%>
+
 </td></tr>
-		
-		</table>
+				</table>
+		<%end%>
+
 </div>
 </div>
 
