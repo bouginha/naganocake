@@ -2,11 +2,9 @@ class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @path = Rails.application.routes.recognize_path(request.referer)
-
-    if @path[:action] == "show"
-      @member = Member.find(@path[:id])
-      @orders = @member.orders.page(params[:page])
+    if params[:member_id]
+       @member = Member.find(params[:member_id])
+       @orders = @member.orders.page(params[:page]).reverse_order
     else
       @orders = Order.all
     end
