@@ -20,7 +20,7 @@ before_action :authenticate_admin!
   def update
     @member = Member.find(params[:id])
     if @member = Member.update(member_params)
-      redirect_to admins_admin_path(@member)
+      redirect_to admins_admin_path
     else
       render :edit
     end
