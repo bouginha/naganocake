@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
   resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
   post 'order/confirm' => 'orders#confirm'
-  post 'order/thanks' => 'orders#thanks'
+  post 'order/thanks' => 'orders#create'
 
   get 'homes/top'
   get 'homes/about'
