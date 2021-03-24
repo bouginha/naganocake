@@ -81,26 +81,3 @@
     <p>注文履歴がありません。</p>
   <% end %>
 </div>
-
-   <!--   <% @ordered_product.each do |ordered_product| %>-->
-			<!--	<tr>-->
-   <!--       <td class="text-left">-->
-   <!--         <%= ordered_product.product.name %>-->
-   <!--       </td>-->
-   <!--       <td class="text-right">-->
-   <!--         ¥<%= tax_price(ordered_product.product.tax_out_price).to_s(:delimited) %>円-->
-   <!--       </td>-->
-   <!--       <td class="text-right">-->
-   <!--         <%= ordered_product.quantity %>-->
-   <!--       </td>-->
-   <!--       <td class="text-right">-->
-   <!--         ¥<%= sub_price(ordered_product).to_s(:delimited) %>円-->
-   <!--       </td>-->
-   <!--         <%= form_for(ordered_product, url: admin_order_details_path(ordered_product), method: :patch) do |f| %>-->
-   <!--       <td>-->
-   <!--         <%= f.select :produciton_status, OrderedProduct.produciton_statuses.keys, class: "order_status" %>-->
-   <!--         <%= f.submit '更新'  ,class: "btn btn-warning" %>-->
-   <!--       </td>-->
-   <!--       <% end %>-->
-   <!--     </tr>-->
-			<!--<% end %>-->
