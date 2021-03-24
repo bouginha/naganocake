@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'homes/top'
   get 'homes/about'
   patch 'members/withdraw'
+  patch 'members/unsubscribe'
 
   delete :cart_products, to: 'cart_products#all_destroy'
 
