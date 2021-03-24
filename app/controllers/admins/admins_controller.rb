@@ -11,12 +11,12 @@ before_action :authenticate_admin!
     @member = Member.find(params[:id])
   end
 
-#会員の情報編集
+ #会員の情報編集
   def edit
     @member = Member.find(params[:id])
   end
 
-#会員の情報更新
+ #会員の情報更新
   def update
     @member = Member.find(params[:id])
     if @member = Member.update(member_params)

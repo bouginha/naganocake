@@ -6,8 +6,8 @@
   <table class="table">
 	  <tr>
       <th>顧客ID</th>
-      <td><%= @member.id %>
-      <% if @member.is_deleted == "有効" %>
+      <td>
+      <% if @member.is_deleted == false %>
         <div class="label label-primary">有効会員</div>
       <% else %>
         <div class="label label-danger">退会済み</div>

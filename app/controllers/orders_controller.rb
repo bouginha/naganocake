@@ -17,12 +17,20 @@ class OrdersController < ApplicationController
   	@order.payment_method = params[:payment_method]
 		@member = current_member
 
-		item = []
-			@items = @member.cart_products
-				@items.each do |i|
-					item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
-				end
-			OrderedItem.import item
+		@ads = @member.addresses
+	    @cart_products=current_member.cart_products
+		
+	
+		# @items = Order.billing_amount
+
+		#ordered_itemにデータ挿入
+			# item = []
+			# @items = @member.cart_products
+			# 	@items.each do |i|
+			# 		item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
+			# 	end
+			# OrderedItem.import item
+
 
 		@ads = @member.addresses
 		#@orderparams = Order.find(params[:id])
@@ -33,7 +41,6 @@ class OrdersController < ApplicationController
 
 
 
-			# binding.pry
 			if params[:address_op]	== "1"
 				@order.address = @member.address
 				@order.postal_code = @member.postal_code
@@ -61,8 +68,14 @@ class OrdersController < ApplicationController
 
   def create
     # 情報の保存
-		@order.save
+
+   @order.new(order_params)
+    if @order.save
 		redirect_to orders_thanks_path
+	else
+		render :confirm
+		
+	end
 	end
 
   def new
@@ -110,9 +123,6 @@ class OrdersController < ApplicationController
 
 
     def order_params
-	 	params.require(:order).permit(
-	 		:member_id, :payment_method, :address, :postal_code,
-	 		address:[:postal_code, :address, :name, :member_is]
-	 		)
+	 	params.require(:order).permit(:member_id, :payment_method, :address, :postal_code)
     end
 end

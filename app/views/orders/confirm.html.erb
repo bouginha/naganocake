@@ -1,7 +1,7 @@
 <h1>Orders#confirm</h1>
 <p>Find me in app/views/orders/confirm.html.erb</p>
 
-
+        <%= form_with model: @order,url: order_thanks_path, local:true do |f| %>
 <div class="container" style="margin-top: 20px;">
  <h4>注文情報確認</h4>
  	<span style="color:#2d714c;">表示価格は全て税込です。</span>
@@ -15,14 +15,36 @@
 				<th>請求金額</th>
 			</tr>
 
-		<% @items.each do |item| %>
-			<tr>
-				<td><%= item.product.name %></td>
-				<td><%= addTax(item.product.price) %></td>
-				<td><%= item.quantity %></td>
-				<td><%= addTax(item.price) %></td>
-			</tr>
-		<% end %>
+          </thead>  
+          <%unless @order.billing_amount = nil%>
+          <%@order.billing_amount=0%>
+          <%end%>
+          
+            <% @cart_products.each do |cart_product| %>
+              <tr>
+                <td><%=cart_product.product.name%></td>
+	            <td><%=cart_product.price%></td>   
+                <td><%=cart_product.quantity%></td>
+             
+                <td><%=(cart_product.price*cart_product.quantity)%></td>
+              </tr>
+            	<%@order.billing_amount+=cart_product.price*cart_product.quantity %>
+            <%end%>
+            <th>
+<tr>
+	<td colspan="2"></td>
+	<td>合計金額：</td>
+	<td><%=@order.billing_amount%></td>
+</tr>
+</th>
+
+
+
+
+
+
+
+
 		</table>
 	</div>
 
@@ -34,28 +56,37 @@
 			</tr>
 			<tr>
 				<th>商品合計</th>
-				<td><%= addTax(@items.sum(:price)) %></td>
+				<td><%=  @order.billing_amount%></td>
 			</tr>
 			<tr>
 				<th>請求金額</th>
-				<td><%= addTax(@items.sum(:price))+800 %></td>
+				<td><%= @order.billing_amount=@order.billing_amount+800 %></td>
 			</tr>
 		</table>
 	</div>
 </div>
 
-<h4>支払い方法</h4>
-	<p><%=# @order.payment_method %></p>
-
+<%if @order.payment_method==0%>
+	<p>クレジット払い</p>
+<%else%>
+<p>銀行振り込み</p>
+<%end%>
 
 <h4>お届け先</h4>
-	<p>〒<%#= @orderparams.postal_code %>
-	<%#= @orderparams.address %>
-	<%#= @orderparams.last_name %> <%#= @orderparams.first_name %> 様</p>
+	<p>〒<%= @order.postal_code %>
+	<%= @order.address %>
 
 <hr>
 
 <div class="text-center">
-	<%= link_to '注文を確定する', orders_thanks_path, class:"btn btn-success" %>
+	
+<% f.hidden_field :postal_code,:@order.postal_code%>
+<% f.hidden_field :payment_method, :@order.payment_method %>
+
+<% f.hidden_field :address,:@order.address %>
+<% f.hidden_field :billing_amount,:@order.billing_amount %>
+
+	<%= f.submit '注文を確定する',class:"btn btn-success" %>
 </div>
 </div>
+<%end%>

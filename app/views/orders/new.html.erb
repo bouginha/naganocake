@@ -2,7 +2,7 @@
 <p>Find me in app/views/orders/new.html.erb</p>
 <div class="containar">
   <div class="row no-gutters">
-
+      
     <table class="col-md-6 col-sm-6 col-xs-6 p-3 mx-auto rounded px-0 my-5">
 <h4>注文情報入力</h4>
 
@@ -12,18 +12,18 @@
               <th>個数</th>
               <th>単価</th>
               <th>小計</th>
-
+             
             </tr>
-          </thead>
+          </thead>  
           <%unless billing_amount = nil%>
           <%billing_amount=0%>
           <%end%>
-
+          
             <% @cart_products.each do |cart_product| %>
               <tr>
                 <td><%=cart_product.product.name%></td>
                 <td><%=cart_product.quantity%></td>
-                <td><%=cart_product.price%></td>
+                <td><%=cart_product.price%></td>                
                 <td><%=(cart_product.price*cart_product.quantity)%></td>
               </tr>
             	<%billing_amount+=cart_product.price*cart_product.quantity %>
@@ -47,10 +47,10 @@
 		<label>お支払い方法</label>
 			<p class="text">ご希望のお支払い方法を選択してください。</p>
 		<div class="radio">
-			<label><%= f.radio_button("payment_method","0") %>クレジットカード</label>
+			<label><%= f.radio_button :payment_method,0 %>クレジットカード</label>
 		</div>
 		<div class="radio">
-			<label><%= f.radio_button("payment_method","1") %>銀行振込</label>
+			<label><%= f.radio_button :payment_method,1 %>銀行振込</label>
 		</div>
 	</div>
 	</td>
@@ -66,8 +66,8 @@
 			</label>
 			<span>〒<%= current_member.postal_code %> <%= current_member.address %></span>
 		</div>
-
-
+		
+		
 		<!-- 登録した配送先 -->
 		<div class="radio">
 			<label><%= f.radio_button :address_op, 2 %>登録済住所から選択</label>
@@ -102,9 +102,10 @@
 		</div>
 	</div>
 		</td></tr>
-
+			
 		<tr><td>
 	<div class="text-center">
+		<%= f.hidden_field :billing_amount%>
 		<%= f.submit '確認画面へ進む', class:"btn btn-success" %>
 	</div>
 
