@@ -20,12 +20,14 @@ class Member < ApplicationRecord
     first_name + last_name
   end
 
+  # 退会
+   def active_for_authentication?
+     super && (self.is_deleted == false)
+   end
+
 end
 
 
-  # 退会
-#   def active_for_authentication?
-#     super && (self.is_deleted == false)
-#   end
+
 # end
 

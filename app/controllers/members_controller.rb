@@ -2,7 +2,7 @@ class MembersController < ApplicationController
 
   #ログインユーザーのみ
   before_action :authenticate_member!
- #退会済みユーザー
+  #退会済みユーザー
   before_action :member_is_deleted
 
 
@@ -32,9 +32,9 @@ class MembersController < ApplicationController
   end
 
   def withdraw
-    @member = Member.find(params[:id])
+        @member = current_member
         #is_deletedカラムにフラグを立てる(defaultはfalse)
-        @member.update(is_deleted: false)
+        @member.update(is_deleted: true)
         #ログアウトさせる
         reset_session
         flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
@@ -43,7 +43,7 @@ class MembersController < ApplicationController
 
   private
   def member_params
-   	params.require(:member).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted, :email)
+   	params.permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted, :email)
   end
 
   #退会済みユーザーへの対応
