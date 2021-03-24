@@ -2,7 +2,7 @@ class MembersController < ApplicationController
 
   #ログインユーザーのみ
   before_action :authenticate_member!
-#退会済みユーザー
+  #退会済みユーザー
   before_action :member_is_deleted
 
 
@@ -32,7 +32,7 @@ class MembersController < ApplicationController
   end
 
   def withdraw
-    @member = Member.find(params[:id])
+        @member = current_member
         #is_deletedカラムにフラグを立てる(defaultはfalse)
         @member.update(is_deleted: true)
         #ログアウトさせる
