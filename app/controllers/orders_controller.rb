@@ -19,8 +19,8 @@ class OrdersController < ApplicationController
 
 		@ads = @member.addresses
 	    @cart_products=current_member.cart_products
-		
-	
+
+
 		# @items = Order.billing_amount
 
 		#ordered_itemにデータ挿入
@@ -74,7 +74,7 @@ class OrdersController < ApplicationController
 		redirect_to orders_thanks_path
 	else
 		render :confirm
-		
+
 	end
 	end
 
