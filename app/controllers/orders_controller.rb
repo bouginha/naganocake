@@ -60,8 +60,14 @@ class OrdersController < ApplicationController
 
   def create
     # 情報の保存
-		@order.save
+
+   @order.new(order_params)
+    if @order.save
 		redirect_to orders_thanks_path
+	else
+		render :confirm
+		
+	end
 	end
 
   def new
@@ -109,9 +115,6 @@ class OrdersController < ApplicationController
 
 
     def order_params
-	 	params.require(:order).permit(
-	 		:member_id, :payment_method, :address, :postal_code,
-	 		address:[:postal_code, :address, :name, :member_is]
-	 		)
+	 	params.require(:order).permit(:member_id, :payment_method, :address, :postal_code)
     end
 end
