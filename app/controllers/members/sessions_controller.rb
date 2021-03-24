@@ -18,6 +18,15 @@ class Members::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def after_sign_in_path_for(resource)
+    case resource
+    when Admin
+      admins_orders_path          #pathは設定したい遷移先へのpathを指定してください
+    when Member
+      root_path        #ここもpathはご自由に変更してください
+    end
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

@@ -59,4 +59,12 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  def after_sign_up_path_for(resource)
+    case resource
+    when Admin
+      admins_orders_path          #pathは設定したい遷移先へのpathを指定してください
+    when Member
+      member_path(current_member.id)          #ここもpathはご自由に変更してください
+    end
+  end
 end
