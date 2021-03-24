@@ -7,7 +7,7 @@
 	  <tr>
       <th>顧客ID</th>
       <td>
-      <% if @member.is_deleted == false %>
+      <% if @member.is_deleted == true %>
         <div class="label label-primary">有効会員</div>
       <% else %>
         <div class="label label-danger">退会済み</div>
