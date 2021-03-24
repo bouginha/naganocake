@@ -29,9 +29,8 @@ Rails.application.routes.draw do
   patch 'members/withdraw'
   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
   resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
-  post 'order/confirm' => 'orders#confirm'
-  post 'order/thanks' => 'orders#create'
-
+  get 'order/confirm' => 'orders#confirm'
+  get "order/thanks" => "orders#thanks"
   get 'homes/top'
   get 'homes/about'
 
