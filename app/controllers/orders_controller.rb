@@ -16,17 +16,20 @@ class OrdersController < ApplicationController
     @order=Order.new
   	@order.payment_method = params[:payment_method]
 		@member = current_member
-		@ads = @member.addresses
-		@orderparams = Order.find(params[:id])
-		@items = @orderparams.ordered_items
 
-		#ordered_itemにデータ挿入
-			item = []
+		item = []
 			@items = @member.cart_products
 				@items.each do |i|
 					item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
 				end
 			OrderedItem.import item
+
+		@ads = @member.addresses
+		#@orderparams = Order.find(params[:id])
+		@items = @orderparams.ordered_items
+
+		#ordered_itemにデータ挿入
+
 
 
 

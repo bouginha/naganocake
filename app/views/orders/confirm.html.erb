@@ -9,10 +9,10 @@
 	<div class="col-xs-8">
 		<table class="table table-bordered">
 			<tr>
-				<th>商品名</th>
-				<th>単価</th>
-				<th>数量</th>
-				<th>小計</th>
+				<th>カートの中身</th>
+				<th>商品小計</th>
+				<th>送料</th>
+				<th>請求金額</th>
 			</tr>
 
 		<% @items.each do |item| %>
@@ -45,12 +45,13 @@
 </div>
 
 <h4>支払い方法</h4>
-	<p><%= @order.payment_method %></p>
+	<p><%=# @order.payment_method %></p>
+
 
 <h4>お届け先</h4>
-	<p>〒<%= @orderparams.postal_code %>
-	<%= @orderparams.address %>
-	<%= @orderparams.last_name %> <%= @orderparams.first_name %> 様</p>
+	<p>〒<%#= @orderparams.postal_code %>
+	<%#= @orderparams.address %>
+	<%#= @orderparams.last_name %> <%#= @orderparams.first_name %> 様</p>
 
 <hr>
 
