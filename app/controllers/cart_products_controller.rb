@@ -5,7 +5,9 @@ class CartProductsController < ApplicationController
 
   def create
     @cart_product=CartProduct.new(cart_product_params)
+    @ordered_product=OrderedProduct.new()
     if @cart_product.save
+      @ordered_product=@cart_product
 
       redirect_to cart_products_path
     else

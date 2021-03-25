@@ -16,7 +16,19 @@
   	<tr>
   	  <td><%= link_to order[:created_at].strftime("%Y-%m-%d %H:%M"), admins_order_path(order) %></td>
   		<td><%= order.member.last_name %><%= order.member.first_name %></td>
-  		<td><%#= order.quantity %></td>
+  		
+  		<td>
+        <%i=0%>
+  		  <% @ordered_products.each do |ordered_product| %>
+  		  <%if ordered_product.order_id==order.id%>
+  		    <%i += ordered_product.quantity%>
+  		  <%end%>
+
+  		  <%end%>
+  		  <p><%=i%>個</p>
+  		  
+  		</td>
+  		
   		<td><%#= order_status %>
               <span class="badge" style="background: red;"><%#= order.deposit_status %></span>
           <%# when "発送待ち" %>
