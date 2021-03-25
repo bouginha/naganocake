@@ -25,10 +25,10 @@
                 <td class="text-left">
                   <%= order.postal_code %><br>
                   <%= order.address %><br>
-                  <%= order.name %>
+                  <%= order.delivery_name %>
                 </td>
                 <td>
-                  <% order.ordered_product.each do |ordered_product| %>
+                  <% order.orffdered_product.each do |ordered_product| %>
                     <%= ordered_product.product.name %><br>
                   <% end %>
                 </td>
