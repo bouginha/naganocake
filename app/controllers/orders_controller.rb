@@ -45,11 +45,16 @@ class OrdersController < ApplicationController
 
     @order = Order.new(order_params)
 
-    if @order.save
+    if @order.save && @order.desired_delivery_date > (Date.today+ 2.day)
 	    @cart_product = current_member.cart_products
     @cart_product.destroy_all
 		redirect_to order_thanks_path
 	else
+	  flash[:warning] = "配達希望日には今日の日付より三日以降を指定してください"
+	  @member = current_member
+  	@ads = @member.addresses
+  	@cart_products=current_member.cart_products
+  	@ads = @member.addresses
 		render :confirm
 	end
   end
@@ -97,7 +102,7 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-	 	params.require(:order).permit(:member_id, :payment_method, :address, :postal_code,:delivery_name,:billing_amount,:shipping_cost,:received_status)
+	 	params.require(:order).permit(:member_id, :payment_method, :address, :postal_code,:delivery_name,:billing_amount,:shipping_cost,:received_status,:desired_delivery_date)
     end
     # def address_params
     #     params.require(:address).permit(:member_id,:name,:address,:postal_code)
