@@ -5,10 +5,12 @@ class OrdersController < ApplicationController
  	before_action :member_is_deleted
 
   def index
-    @orders = Order.all
+    @orders = current_member.orders
   end
 
   def show
+  	@order = Order.find(params[:id])
+    @ordered_products = @order.ordered_products
   end
 
   def confirm

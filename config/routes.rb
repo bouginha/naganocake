@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   get 'homes/about'
 
 
-
   delete :cart_products, to: 'cart_products#all_destroy'
 
 root to: 'homes#top'
