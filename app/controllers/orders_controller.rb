@@ -47,12 +47,13 @@ class OrdersController < ApplicationController
 
     # 情報の保存
     @order = Order.new(order_params)
-    @ordered_product=OrderedProduct.new
+    
     if @order.save && @order.desired_delivery_date > (Date.today+ 2.day) 
 
     @cart_products = current_member.cart_products
     
     @cart_products.each do |cart_product|
+      @ordered_product=OrderedProduct.new
       @ordered_product.product_id=cart_product.product_id
       @ordered_product.order_id=@order.id
       @ordered_product.quantity=cart_product.quantity
