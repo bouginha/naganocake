@@ -15,17 +15,17 @@
 				<th>請求金額</th>
 			</tr>
 
-          </thead>  
+          </thead>
           <%unless @order.billing_amount = nil%>
           <%@order.billing_amount=0%>
           <%end%>
-          
+
             <% @cart_products.each do |cart_product| %>
               <tr>
                 <td><%=cart_product.product.name%></td>
-	            <td><%=cart_product.price%></td>   
+	            <td><%=cart_product.price%></td>
                 <td><%=cart_product.quantity%></td>
-             
+
                 <td><%=(cart_product.price*cart_product.quantity)%></td>
               </tr>
             	<%@order.billing_amount+=cart_product.price*cart_product.quantity %>

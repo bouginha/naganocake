@@ -14,30 +14,10 @@ class OrdersController < ApplicationController
   def confirm
   			# params[:order][:address_op]
     @order=Order.new(order_params)
-
 		@member = current_member
-
 		@ads = @member.addresses
-	    @cart_products=current_member.cart_products
-		
-	
-		# @items = Order.billing_amount
-
-		#ordered_itemにデータ挿入
-			# item = []
-			# @items = @member.cart_products
-			# 	@items.each do |i|
-			# 		item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
-			# 	end
-			# OrderedItem.import item
-
-
+		@cart_products=current_member.cart_products
 		@ads = @member.addresses
-		#@orderparams = Order.find(params[:id])
-		# @items = @orderparams.ordered_items
-
-		#ordered_itemにデータ挿入
-
 			if params[:order][:address_op]	== "1"
 				@order.address = @member.address
 				@order.postal_code = @member.postal_code
@@ -51,30 +31,20 @@ class OrdersController < ApplicationController
 				# #addressテーブルに保存させる
 				@ad = Address.new
 				@ad.member_id = @member.id
-				# @ad.address = params[:address_op][:address]
-				# @ad.name = params[:address][:name]
-
 				@ad.postal_code = params[:address_op][:postal_code]
-				# @ad.phone = params[:address][:telephone]
 				@ad.save
-
-				# @order.address = params[:address_op][:address]
-
-				# @order.postal_code = params[:address_op][:postal_code]
 			end
 	
   end
 
+ # 情報の保存
   def create
-    # 情報の保存
-
-    @order = Order.new(order_params)
-
+  	@order = Order.new(order_params)
     if @order.save
-		redirect_to order_thanks_path
-	else
-		render :confirm
-	end
+  		redirect_to order_thanks_path
+    else
+	  	render :confirm
+    end
   end
 
   def new

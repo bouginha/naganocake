@@ -10,12 +10,14 @@ Rails.application.routes.draw do
     post 'products_genres' => 'products_genres#index'
     resources :products
     post 'products' => 'products#index'
+    patch :order_status
     resources :admins, only: [:index, :show, :edit, :update]
     resources :ordered_products, only: [:update]
-    resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
+    resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index, :update]
   end
     #get 'admins/homes/top'
     post 'admins/products_genres' => 'admins/products_genres#index'
+
 # member
   devise_for :members, controllers: {
   sessions: 'members/sessions',
