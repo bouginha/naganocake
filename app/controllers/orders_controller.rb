@@ -5,15 +5,18 @@ class OrdersController < ApplicationController
  	before_action :member_is_deleted
 
   def index
-    @orders = Order.all
+    @orders = current_member.orders
   end
 
   def show
+  	@order = Order.find(params[:id])
+    @ordered_products = @order.ordered_products
   end
 
   def confirm
   			# params[:order][:address_op]
     @order=Order.new(order_params)
+
   	@member = current_member
   	@ads = @member.addresses
   	@cart_products=current_member.cart_products
@@ -40,12 +43,14 @@ class OrdersController < ApplicationController
 	
   end
 
+ # 情報の保存
   def create
-    # 情報の保存
 
+    # 情報の保存
     @order = Order.new(order_params)
 
     if @order.save && @order.desired_delivery_date > (Date.today+ 2.day)
+
 	    @cart_product = current_member.cart_products
     @cart_product.destroy_all
 		redirect_to order_thanks_path
