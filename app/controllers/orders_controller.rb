@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
   def confirm
   			# params[:order][:address_op]
     @order=Order.new(order_params)
+
   	@member = current_member
   	@ads = @member.addresses
   	@cart_products=current_member.cart_products
@@ -42,11 +43,9 @@ class OrdersController < ApplicationController
 	
   end
 
+ # 情報の保存
   def create
-    # 情報の保存
-
-    @order = Order.new(order_params)
-
+  	@order = Order.new(order_params)
     if @order.save
 	    @cart_product = current_member.cart_products
     @cart_product.destroy_all
