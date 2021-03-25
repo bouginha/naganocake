@@ -5,35 +5,41 @@ class OrdersController < ApplicationController
  	before_action :member_is_deleted
 
   def index
-    @orders = Order.all
+    @orders = current_member.orders
   end
 
   def show
+  	@order = Order.find(params[:id])
+    @ordered_products = @order.ordered_products
   end
 
   def confirm
   			# params[:order][:address_op]
     @order=Order.new(order_params)
-		@member = current_member
-		@ads = @member.addresses
-		@cart_products=current_member.cart_products
-		@ads = @member.addresses
-			if params[:order][:address_op]	== "1"
-				@order.address = @member.address
-				@order.postal_code = @member.postal_code
-				@order.delivery_name = @member.first_name+@member.last_name
-			elsif params[:order][:address_op] == "2"
-				@ad = @ads.find(params[:Address][:id])
-				@order.address = @ad.address
-				@order.postal_code = @ad.postal_code
-				@order.delivery_name = @member.name
-			elsif params[:order][:address_op] == "3"
-				# #addressテーブルに保存させる
-				@ad = Address.new
-				@ad.member_id = @member.id
-				@ad.postal_code = params[:address_op][:postal_code]
-				@ad.save
-			end
+
+  	@member = current_member
+  	@ads = @member.addresses
+  	@cart_products=current_member.cart_products
+  	@ads = @member.addresses
+
+		if params[:order][:address_op]	== "1"
+			@order.address = @member.address
+			@order.postal_code = @member.postal_code
+			@order.delivery_name = @member.first_name+@member.last_name
+		elsif params[:order][:address_op] == "2"
+			@ad = Address.find_by(address: @order.address)
+			@order.postal_code = @ad.postal_code
+			@order.delivery_name = @ad.name
+		elsif params[:order][:address_op] == "3"
+			#addressテーブルに保存させる
+			@ad = Address.new
+      @ad.member_id = @member.id
+			@ad.address = params[:order][:address_new]
+			@order.address = @ad.address
+			@ad.name = @order.delivery_name
+			@ad.postal_code = @order.postal_code
+			@ad.save
+		end
 	
   end
 
@@ -41,16 +47,19 @@ class OrdersController < ApplicationController
   def create
   	@order = Order.new(order_params)
     if @order.save
-  		redirect_to order_thanks_path
-    else
-	  	render :confirm
-    end
+	    @cart_product = current_member.cart_products
+    @cart_product.destroy_all
+		redirect_to order_thanks_path
+	else
+		render :confirm
+	end
   end
 
   def new
     @cart_products=current_member.cart_products
     @order=Order.new
-    @member = current_member
+
+	@member = current_member
 		if @member.cart_products.blank?
  		    flash[:warning] = "カートが空です"
 			redirect_to cart_products_path
@@ -91,4 +100,7 @@ class OrdersController < ApplicationController
     def order_params
 	 	params.require(:order).permit(:member_id, :payment_method, :address, :postal_code,:delivery_name,:billing_amount,:shipping_cost,:received_status)
     end
+    # def address_params
+    #     params.require(:address).permit(:member_id,:name,:address,:postal_code)
+    # end
 end
