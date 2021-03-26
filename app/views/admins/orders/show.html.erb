@@ -71,12 +71,13 @@
 	  		  	<td>
 	  		    <%=ordered_product.quantity%>
 	  		  	</td>
-	  		  	<td>
-	  		  	<%= form_for(@ordered_product, url:admins_order_path(@order), method: :patch) do |f| %>
-	  		  	<%= f.select :production_status, OrderedProduct.production_statuses.keys.map {|k| [I18n.t("enums.ordered_product.production_status.#{k}"), k]} %>
+
+				    <td>
+				    <%= form_with model: @order ,url:admins_order_path(@order), method: :patch, local:true do |f| %>
+				<%=f.select  :production_status, OrderedProduct.production_statuses.keys.to_a, {}, class: 'form-control' %>
 				<%= f.submit "更新" %>
-				<% end %>
-				</td>
+						<% end %>
+						</td>
 				<% end %>
 	  		  	</tr>
   		  <%end%>

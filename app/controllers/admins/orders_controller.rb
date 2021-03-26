@@ -6,7 +6,7 @@ class Admins::OrdersController < ApplicationController
        @member = Member.find(params[:member_id])
        @orders = @member.orders.page(params[:page]).reverse_order
        @ordered_products=OrderedProduct.all
-       else
+    else
        @orders = Order.all
       # @ordered_product=OrderedProduct.new(CartProduct.find())
     end
@@ -17,7 +17,7 @@ class Admins::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @member = Member.find(@order.member_id)
-    @ordered_product = @order.OrderedProduct.all
+    #@ordered_product = OrderedProduct.find(@.ordered_product.id)
     @ordered_products = OrderedProduct.all
     @products=Product.all
   end
@@ -30,8 +30,8 @@ class Admins::OrdersController < ApplicationController
   	redirect_to admins_order_path
 
   	#orderのproduct_statusの更新
-  	@ordered_product = OrderProduct.find(params[:id])
-    @ordered_product.update(ordered_product_params)
+  	@ordered_product = OrderProduct.find_by(order_id: @order.id)
+    @ordered_product.update(product_status: params[:order][:product_status])
     flash[:success] = "更新に成功しました"
   	redirect_to admins_order_path
   end
