@@ -21,8 +21,8 @@ class OrdersController < ApplicationController
 
 		@ads = @member.addresses
 	    @cart_products=current_member.cart_products
-		
-	
+
+
 		# @items = Order.billing_amount
 
 		#ordered_itemにデータ挿入
@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
 
 				# @order.postal_code = params[:address_op][:postal_code]
 			end
-	
+
   end
 
   def create
@@ -117,7 +117,7 @@ class OrdersController < ApplicationController
     		redirect_to root_path
     	end
     end
-    
+
     private
 
     def order_params
