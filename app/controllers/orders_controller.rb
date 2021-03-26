@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
 
   def show
   	@order = Order.find(params[:id])
-    @ordered_products = OrderedProduct.all
+    @ordered_products=OrderedProduct.where(order_id: params[:id])
   end
 
   def confirm
