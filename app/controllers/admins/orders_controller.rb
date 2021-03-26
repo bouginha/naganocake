@@ -11,21 +11,27 @@ class Admins::OrdersController < ApplicationController
       # @ordered_product=OrderedProduct.new(CartProduct.find())
     end
     @ordered_products=OrderedProduct.all
-  
+
   end
 
   def show
     @order = Order.find(params[:id])
-
     @member = Member.find(@order.member_id)
-    @ordered_products=OrderedProduct.all
+    @ordered_product = @order.OrderedProduct.all
+    @ordered_products = OrderedProduct.all
     @products=Product.all
   end
 
   def update
-#orderのorder_statusの更新
+    #orderのorder_statusの更新
   	@order = Order.find(params[:id])
     @order.update(order_params)
+    flash[:success] = "更新に成功しました"
+  	redirect_to admins_order_path
+
+  	#orderのproduct_statusの更新
+  	@ordered_product = OrderProduct.find(params[:id])
+    @ordered_product.update(ordered_product_params)
     flash[:success] = "更新に成功しました"
   	redirect_to admins_order_path
   end
@@ -44,7 +50,7 @@ class Admins::OrdersController < ApplicationController
 
   private
   def order_params
-  	params.require(:order).permit(:order_status,)
+  	params.require(:order).permit(:order_status, :product_status)
   end
 
 
