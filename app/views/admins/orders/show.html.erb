@@ -24,8 +24,6 @@
 					<br>
 					<%= @order.address %>
 
-					<%#= @order.last_name %>
-					<%#= @order.first_name %>
 			</td>
 		</tr>
 		<tr>
@@ -41,7 +39,6 @@
 			<td>
 
 				<%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
-
 				<%=f.select  :order_status, Order.order_statuses.keys.to_a, {}, class: 'form-control' %>
 
 				<%= f.submit "更新" %>
@@ -49,7 +46,12 @@
 						<% end %>
 			</td>
 		</tr>
-
+		<tr>
+			<th>配達希望日</th>
+			<td>
+				<%=@order.desired_delivery_date%>
+			</td>
+		</th>
 	</table>
 	</div>
 	<div class="col-xs-5 m-2">
@@ -71,7 +73,7 @@
 	  		  	<% @products.each do |product| %>
 		  		  	<%if ordered_product.product_id==product.id%>
 			  		  	<tr><td>
-
+	
 			  		  		<%=product.name%>
 			  		  	</td>
 		  		  	<%end%>
@@ -85,16 +87,16 @@
 						</td>
 	  		  	<td>
 				<%= form_with model: @order ,url:admins_order_path(@order), method: :patch, local:true do |f| %>
-				<%=f.select  :production_status, OrderedProduct.production_statuses.keys.to_a, {}, class: 'form-control' %>
-				<%=f.hidden_field :ordered_product_id, :value => ordered_product.id%>
-				<%=f.hidden_field :upd, :value =>2%>
-				<%= f.submit "更新" %>
+					<%=f.select  :production_status, OrderedProduct.production_statuses.keys.to_a, {}, class: 'form-control' %>
+					<%=f.hidden_field :ordered_product_id, :value => ordered_product.id%>
+					<%=f.hidden_field :upd, :value =>2%>
+					<%= f.submit "更新" %>
 				<% end %>
-				</td>
+					</td>
 
 	  		  	</tr>
+	  		  	<%end%>
   		  <%end%>
-  		  	  <%end%>
 	</table>
 	</div>
 	</div>

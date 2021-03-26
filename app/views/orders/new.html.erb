@@ -43,7 +43,7 @@
 						<label>お支払い方法</label>
 						<p class="text">ご希望のお支払い方法を選択してください。</p>
 						<div class="radio">
-							<label><%= f.radio_button :payment_method,0 %>クレジットカード</label>
+							<label><%= f.radio_button :payment_method,0, checked: true%>クレジットカード</label>
 						</div>
 						<div class="radio">
 							<label><%= f.radio_button :payment_method,1 %>銀行振込</label>
@@ -58,7 +58,7 @@
 						<!-- 自宅 -->
 						<div class="radio">
 							<label>
-								<%= f.radio_button :address_op, 1 %>ご自身の住所:
+								<%= f.radio_button :address_op, 1 , checked: true%>ご自身の住所:
 							</label>
 							<span>〒<%= current_member.postal_code %> <%= current_member.address %></span>
 						</div>
