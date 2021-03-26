@@ -40,28 +40,24 @@ class OrdersController < ApplicationController
 			@ad.postal_code = @order.postal_code
 			@ad.save
 		end
-	
+
   end
 
  # 情報の保存
   def create
-
-    # 情報の保存
     @order = Order.new(order_params)
-
     if @order.save && @order.desired_delivery_date > (Date.today+ 2.day)
-
-	    @cart_product = current_member.cart_products
+	  @cart_product = current_member.cart_products
     @cart_product.destroy_all
 		redirect_to order_thanks_path
-	else
+	  else
 	  flash[:warning] = "配達希望日には今日の日付より三日以降を指定してください"
 	  @member = current_member
   	@ads = @member.addresses
   	@cart_products=current_member.cart_products
   	@ads = @member.addresses
 		render :confirm
-	end
+	  end
   end
 
   def new
@@ -103,7 +99,7 @@ class OrdersController < ApplicationController
     		redirect_to root_path
     	end
     end
-    
+
     private
 
     def order_params

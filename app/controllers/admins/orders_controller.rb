@@ -13,6 +13,8 @@ class Admins::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @member = Member.find(params[:id])
+    @ordered_products = @order.ordered_products
+    #binding.pry
     #@items = @order.ordered_items
   end
 

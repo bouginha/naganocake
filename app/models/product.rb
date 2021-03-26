@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
     belongs_to :products_genre
     has_many :cart_products
+    has_many :ordered_product
    attachment :image
    validates :name, presence: true
    validates :about, presence: true

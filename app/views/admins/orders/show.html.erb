@@ -34,9 +34,40 @@
 		<tr>
 			<th>注文ステータス</th>
 			<td>
-				<%=f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+				<%=f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
 				<%= f.submit "更新" %>
 			</td>
 		</tr>
 		<% end %>
+
+
+<table class="table table-bordered">
+		<tr>
+			<th>商品名</th>
+			<th>個数</th>
+			<th>単価</th>
+			<th>商品小計</th>
+			<th>製作ステータス</th>
+		  <% @ordered_products.each do |ordered_product| %>
+		</tr>
+		<tr>
+		<%= form_for(ordered_product, url:admins_order_path(ordered_product), method: :patch) do |f| %>
+			<td><%= ordered_product.name %></td>
+			<td><%= ordered_product.quantity %></td>
+			<td><%= ordered_product.price%></td>
+			<td><%#= %>円</td>
+			<td>
+				<%=f.select :production_status, OrderedProduct.production_statuses.keys.map {|k| [I18n.t("enums.ordered_product.production_status.#{k}"), k]} %>
+				<%= f.submit "更新" %>
+				</td>
+				<% end %>
+		</tr>
+		<% end %>
 	</table>
+
+
+
+
+
+
+
