@@ -23,17 +23,19 @@ class Admins::OrdersController < ApplicationController
   end
 
   def update
-    #orderのorder_statusの更新
-  	@order = Order.find(params[:id])
-    @order.update(order_params)
-    flash[:success] = "更新に成功しました"
-  	redirect_to admins_order_path
 
-  	#orderのproduct_statusの更新
-  	@ordered_product = OrderProduct.find_by(order_id: @order.id)
-    @ordered_product.update(product_status: params[:order][:product_status])
-    flash[:success] = "更新に成功しました"
-  	redirect_to admins_order_path
+    if params[:order][:upd]=="1"
+    	@order = Order.find(params[:id])
+      @order.update(order_params)
+          flash[:success] = "更新に成功しました"
+    elsif params[:order][:upd]=="2"
+      @ordered_product=OrderedProduct.find(params[:order][:ordered_product_id]) 
+      @ordered_product.update(production_status: params[:order][:production_status])
+    flash[:success] = "更新に成功しました"    
+    end
+
+    	redirect_to admins_order_path
+    
   end
 
   def confirm
@@ -50,7 +52,9 @@ class Admins::OrdersController < ApplicationController
 
   private
   def order_params
-  	params.require(:order).permit(:order_status, :product_status)
+
+  	params.require(:order).permit(:order_status)
+
   end
 
 

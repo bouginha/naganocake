@@ -55,6 +55,7 @@ class OrdersController < ApplicationController
       @ordered_product.order_id=@order.id
       @ordered_product.quantity=cart_product.quantity
       @ordered_product.price=cart_product.price
+      @ordered_product.production_status=0
       @ordered_product.save
     end
 
@@ -114,7 +115,7 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-	 	params.require(:order).permit(:member_id, :payment_method, :address, :postal_code,:delivery_name,:billing_amount,:shipping_cost,:received_status,:desired_delivery_date)
+	 	params.require(:order).permit(:member_id, :payment_method, :address, :postal_code,:delivery_name,:billing_amount,:shipping_cost,:desired_delivery_date)
     end
     # def address_params
     #     params.require(:address).permit(:member_id,:name,:address,:postal_code)
