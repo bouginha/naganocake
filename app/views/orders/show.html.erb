@@ -22,7 +22,11 @@
               </tr>
               <tr>
               　<th class="info">支払方法</th>
-                <td class="text-left"><%= @order.payment_method %></td>
+                <td class="text-left"><%if @order.payment_method==0%>
+	    <p>クレジット払い</p>
+      <%else%>
+      <p>銀行振り込み</p>
+      <%end%></td>
               </tr>
               <tr>
                 <th class="info">注文ステータス</th>

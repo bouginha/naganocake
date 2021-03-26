@@ -71,7 +71,7 @@
 	  		  	<% @products.each do |product| %>
 		  		  	<%if ordered_product.product_id==product.id%>
 			  		  	<tr><td>
-	
+
 			  		  		<%=product.name%>
 			  		  	</td>
 		  		  	<%end%>
@@ -89,10 +89,12 @@
 				<%=f.hidden_field :ordered_product_id, :value => ordered_product.id%>
 				<%=f.hidden_field :upd, :value =>2%>
 				<%= f.submit "更新" %>
-						<% end %>				</td>
+				<% end %>
+				</td>
 
 	  		  	</tr>
   		  <%end%>
+  		  	  <%end%>
 	</table>
 	</div>
 	</div>
