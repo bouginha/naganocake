@@ -5,17 +5,21 @@ class Admins::OrdersController < ApplicationController
     if params[:member_id]
        @member = Member.find(params[:member_id])
        @orders = @member.orders.page(params[:page]).reverse_order
-    else
+       @ordered_products=OrderedProduct.all
+       else
        @orders = Order.all
+      # @ordered_product=OrderedProduct.new(CartProduct.find())
     end
+    @ordered_products=OrderedProduct.all
+  
   end
 
   def show
     @order = Order.find(params[:id])
-    @member = Member.find(params[:id])
-    @ordered_products = @order.ordered_products
-    #binding.pry
-    #@items = @order.ordered_items
+
+    @member = Member.find(@order.member_id)
+    @ordered_products=OrderedProduct.all
+    @products=Product.all
   end
 
   def update
@@ -42,5 +46,7 @@ class Admins::OrdersController < ApplicationController
   def order_params
   	params.require(:order).permit(:order_status,)
   end
+
+
 
 end

@@ -1,10 +1,14 @@
 <h1>Admins::Orders#show</h1>
 <p>Find me in app/views/admins/orders/show.html.erb</p>
 
-<div class="row" style="width:60%; margin:0 auto;">
-<%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
-<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文詳細画面</h4>
+<div class="container">
+	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文詳細画面</h4>
+  <div class="row">
 
+
+
+
+<div class="col-xs-5 m-2">
 	<table class="table table-bordered">
 		<tr>
 			<th>注文者名</th>
@@ -17,8 +21,9 @@
 		<tr>
 			<th>配送先</th>
 			<td><%= @order.postal_code %>
-					<%= @order.address %>
 					<br>
+					<%= @order.address %>
+					
 					<%#= @order.last_name %>
 					<%#= @order.first_name %>
 			</td>
@@ -34,40 +39,45 @@
 		<tr>
 			<th>注文ステータス</th>
 			<td>
-				<%=f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+
+				<%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
+				<%=f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
 				<%= f.submit "更新" %>
+						<% end %>
 			</td>
 		</tr>
-		<% end %>
 
-
-<table class="table table-bordered">
-		<tr>
-			<th>商品名</th>
-			<th>個数</th>
-			<th>単価</th>
-			<th>商品小計</th>
-			<th>製作ステータス</th>
-		  <% @ordered_products.each do |ordered_product| %>
-		</tr>
-		<tr>
-		<%= form_for(ordered_product, url:admins_order_path(ordered_product), method: :patch) do |f| %>
-			<td><%= ordered_product.name %></td>
-			<td><%= ordered_product.quantity %></td>
-			<td><%= ordered_product.price%></td>
-			<td><%#= %>円</td>
-			<td>
-				<%=f.select :production_status, OrderedProduct.production_statuses.keys.map {|k| [I18n.t("enums.ordered_product.production_status.#{k}"), k]} %>
-				<%= f.submit "更新" %>
-				</td>
-				<% end %>
-		</tr>
-		<% end %>
 	</table>
-
-
-
-
-
-
-
+	</div>
+	<div class="col-xs-5 m-2">
+	<table class="table table-bordered">
+		      <thead>
+			    <tr>
+			      <th>商品名</th>
+			      <th>発注個数</th>
+			      <th>注文ステータス</th>
+			      <th>発注ステータス</th>
+			    </tr>
+			  </thead>
+  
+		  <% @ordered_products.each do |ordered_product| %>
+	  		  <%if ordered_product.order_id==@order.id%>
+	  		  	<% @products.each do |product| %>
+		  		  	<%if ordered_product.product_id==product.id%>
+			  		  	<tr><td>
+			  		  		<%=product.name%>
+			  		  	</td>	
+		  		  	<%end%>
+	  		  	<%end%>
+	  		  	<td>
+	  		    <%=ordered_product.quantity%>
+	  		  	</td>
+	  		  	<td>注文ステータス</td>
+	  		  	<td>発注ステータス</td>
+	  		  	</tr>
+	  		  <%end%>
+  		  <%end%>
+	</table>	
+	</div>
+	</div>
+	</div>
