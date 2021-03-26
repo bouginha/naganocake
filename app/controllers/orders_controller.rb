@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
 
   def show
   	@order = Order.find(params[:id])
-    # @ordered_products = @order.ordered_products
+    @ordered_products = OrderedProduct.all
   end
 
   def confirm
@@ -45,10 +45,10 @@ class OrdersController < ApplicationController
  # 情報の保存
   def create
     @order = Order.new(order_params)
-    if @order.save && @order.desired_delivery_date > (Date.today+ 2.day) 
+    if @order.save && @order.desired_delivery_date > (Date.today+ 2.day)
 
     @cart_products = current_member.cart_products
-    
+
     @cart_products.each do |cart_product|
       @ordered_product=OrderedProduct.new
       @ordered_product.product_id=cart_product.product_id
@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
       @ordered_product.save
     end
 
-    
+
     @cart_products.destroy_all
 		redirect_to order_thanks_path
 	  else

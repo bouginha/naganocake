@@ -6,7 +6,7 @@ class Admins::OrdersController < ApplicationController
        @member = Member.find(params[:member_id])
        @orders = @member.orders.page(params[:page]).reverse_order
        @ordered_products=OrderedProduct.all
-       else
+    else
        @orders = Order.all
       # @ordered_product=OrderedProduct.new(CartProduct.find())
     end
@@ -17,7 +17,7 @@ class Admins::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @member = Member.find(@order.member_id)
-    @ordered_product = @order.OrderedProduct.all
+    #@ordered_product = OrderedProduct.find(@.ordered_product.id)
     @ordered_products = OrderedProduct.all
     @products=Product.all
   end
@@ -36,7 +36,6 @@ class Admins::OrdersController < ApplicationController
 
     	redirect_to admins_order_path
     
-
   end
 
   def confirm
