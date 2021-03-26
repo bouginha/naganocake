@@ -23,6 +23,7 @@
   		  <% @ordered_products.each do |ordered_product| %>
   		  <%if ordered_product.order_id==order.id%>
   		    <%i += ordered_product.quantity%>
+
   		  <%end%>
 
   		  <%end%>
@@ -30,13 +31,9 @@
   		 
   		</td>
 
-  		<td><%#= order_status %>
-              <span class="badge" style="background: red;"><%#= order.deposit_status %></span>
-          <%# when "発送待ち" %>
-              <span class="badge" style="background: green;"><%#= order.deposit_status %></span>
-              <%# when "発送済み" %>
-              <span class="badge" style="background: blue;"><%#= order.deposit_status %></span>
-        <%# end %></td>
+  		<td><%= order.order_status %></td>
+ 
+
   	 </tr>
     <% end %>
   </table>
