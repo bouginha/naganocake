@@ -11,19 +11,18 @@ class Admins::OrdersController < ApplicationController
       # @ordered_product=OrderedProduct.new(CartProduct.find())
     end
     @ordered_products=OrderedProduct.all
-  
+
   end
 
   def show
     @order = Order.find(params[:id])
-
     @member = Member.find(@order.member_id)
-    @ordered_products=OrderedProduct.all
+    @ordered_product = @order.OrderedProduct.all
+    @ordered_products = OrderedProduct.all
     @products=Product.all
   end
 
   def update
-#orderのorder_statusの更新
 
     if params[:order][:upd]=="1"
     	@order = Order.find(params[:id])
@@ -37,6 +36,7 @@ class Admins::OrdersController < ApplicationController
 
     	redirect_to admins_order_path
     
+
   end
 
   def confirm
@@ -53,7 +53,9 @@ class Admins::OrdersController < ApplicationController
 
   private
   def order_params
+
   	params.require(:order).permit(:order_status)
+
   end
 
 
