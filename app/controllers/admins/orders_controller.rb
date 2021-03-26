@@ -24,10 +24,15 @@ class Admins::OrdersController < ApplicationController
 
   def update
 #orderのorder_statusの更新
+
   	@order = Order.find(params[:id])
-    @order.update(order_params)
-    flash[:success] = "更新に成功しました"
-  	redirect_to admins_order_path
+    @ordered_product=OrderedProduct.find_by(order_id: @order.id) 
+
+      @order.update(order_params)
+      @ordered_product.update(production_status: params[:order][:production_status])
+      flash[:success] = "更新に成功しました"
+    	redirect_to admins_order_path
+    
   end
 
   def confirm
@@ -44,7 +49,7 @@ class Admins::OrdersController < ApplicationController
 
   private
   def order_params
-  	params.require(:order).permit(:order_status,)
+  	params.require(:order).permit(:order_status)
   end
 
 
