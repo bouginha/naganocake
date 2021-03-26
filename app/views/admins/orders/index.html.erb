@@ -17,26 +17,28 @@
   	  <td><%= link_to order[:created_at].strftime("%Y-%m-%d %H:%M"), admins_order_path(order) %></td>
   		<td><%= order.member.last_name %><%= order.member.first_name %></td>
 
-  		
+
   		<td>
         <%i=0%>
+        <% s="" %>
   		  <% @ordered_products.each do |ordered_product| %>
   		  <%if ordered_product.order_id==order.id%>
   		    <%i += ordered_product.quantity%>
+  		    <% s=ordered_product.production_status %>
 
   		  <%end%>
 
   		  <%end%>
   		  <p><%=i%>個</p>
-  		 
+
   		</td>
 
   		<td><%= order.order_status %></td>
- 
 
+  		<td><%= s %></td>
   	 </tr>
     <% end %>
   </table>
-  
-  
+
+
 

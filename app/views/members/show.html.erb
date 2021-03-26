@@ -2,11 +2,12 @@
 
   <div class="row">
 	<h2 class="mypage"><i class="fas fa-user"></i>マイページ</h2>
-
-	<p class="under_mypage"><strong>ユーザ情報</strong>
-	  <%= link_to "編集する", edit_member_path, class:"btn btn-primary mypage_edit" %>
-		<%= link_to "パスワードを変更する", edit_member_registration_path, class:"btn btn-primary" %></p>
   </div>
+  <p><strong>会員情報</strong>
+
+	  <%= link_to "編集する", edit_member_path, class:"btn btn-primary mypage_edit" %>
+	  <%= link_to "パスワードを変更する", edit_member_registration_path, class:"btn btn-primary" %></p>
+
 		<div class="row">
 			<div class="col-xs-8">
 				<table class="table">
