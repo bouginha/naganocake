@@ -23,7 +23,7 @@
 			<td><%= @order.postal_code %>
 					<br>
 					<%= @order.address %>
-					
+
 					<%#= @order.last_name %>
 					<%#= @order.first_name %>
 			</td>
@@ -41,7 +41,7 @@
 			<td>
 
 				<%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
-				<%=f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+				<%=f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
 				<%= f.submit "更新" %>
 						<% end %>
 			</td>
@@ -55,29 +55,32 @@
 			    <tr>
 			      <th>商品名</th>
 			      <th>発注個数</th>
-			      <th>注文ステータス</th>
-			      <th>発注ステータス</th>
+			      <th>製作ステータス</th>
 			    </tr>
 			  </thead>
-  
+
 		  <% @ordered_products.each do |ordered_product| %>
 	  		  <%if ordered_product.order_id==@order.id%>
 	  		  	<% @products.each do |product| %>
 		  		  	<%if ordered_product.product_id==product.id%>
 			  		  	<tr><td>
 			  		  		<%=product.name%>
-			  		  	</td>	
+			  		  	</td>
 		  		  	<%end%>
 	  		  	<%end%>
 	  		  	<td>
 	  		    <%=ordered_product.quantity%>
 	  		  	</td>
-	  		  	<td>注文ステータス</td>
-	  		  	<td>発注ステータス</td>
+	  		  	<td>
+	  		  	<%= form_for(@ordered_product, url:admins_order_path(@order), method: :patch) do |f| %>
+	  		  	<%= f.select :production_status, OrderedProduct.production_statuses.keys.map {|k| [I18n.t("enums.ordered_product.production_status.#{k}"), k]} %>
+				<%= f.submit "更新" %>
+				<% end %>
+				</td>
+				<% end %>
 	  		  	</tr>
-	  		  <%end%>
   		  <%end%>
-	</table>	
+	</table>
 	</div>
 	</div>
 	</div>

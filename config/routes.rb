@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :products
     post 'products' => 'products#index'
     patch :order_status
-    patch :order_status
+    patch :product_status
     resources :admins, only: [:index, :show, :edit, :update]
     resources :ordered_products, only: [:update]
     resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index, :update]
