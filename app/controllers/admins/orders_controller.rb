@@ -16,10 +16,10 @@ class Admins::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+
     @member = Member.find(@order.member_id)
     @ordered_products=OrderedProduct.all
     @products=Product.all
-    #@items = @order.ordered_items
   end
 
   def update
