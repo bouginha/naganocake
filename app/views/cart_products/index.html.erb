@@ -16,7 +16,7 @@
       <%i=0%>
       <%plus=0%>
         <% @cart_products.each do |cart_product| %>
-          <%if cart_product.product.is_active%>
+
             <tr>
               <td><%=cart_product.product.name%></td>
               <td><%= form_for (cart_product) do |f| %>
@@ -33,7 +33,7 @@
                 <%end%>
               </td>
             </tr>
-            <%end%>
+        
         <%end%>
         <tr>
 					<td colspan="2"></td>
