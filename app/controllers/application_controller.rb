@@ -18,6 +18,8 @@ before_action :configure_permitted_parameters, if: :devise_controller?
     devise_parameter_sanitizer.permit(:sign_up, keys: [:password, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number])
   end
 
+  
+
   def after_sign_in_path_for(resource)
     case resource
     when Admin
@@ -26,6 +28,8 @@ before_action :configure_permitted_parameters, if: :devise_controller?
       root_path              #ここもpathはご自由に変更してください
     end
   end
+
+
 
   def after_sign_out_path_for(resource_or_scope)
     if resource_or_scope == :admin

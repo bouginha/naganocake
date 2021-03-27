@@ -10,12 +10,15 @@ Rails.application.routes.draw do
     post 'products_genres' => 'products_genres#index'
     resources :products
     post 'products' => 'products#index'
+    patch :order_status
+    patch :product_status
     resources :admins, only: [:index, :show, :edit, :update]
     resources :ordered_products, only: [:update]
-    resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
+    resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index, :update]
   end
     #get 'admins/homes/top'
     post 'admins/products_genres' => 'admins/products_genres#index'
+
 # member
   devise_for :members, controllers: {
   sessions: 'members/sessions',
@@ -29,13 +32,11 @@ Rails.application.routes.draw do
   patch 'members/withdraw'
   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
   resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
-  post 'order/confirm' => 'orders#confirm'
-  post 'order/thanks' => 'orders#create'
-
+  get 'order/confirm' => 'orders#confirm'
+  get "order/thanks" => "orders#thanks"
   get 'homes/top'
   get 'homes/about'
-
-
+  get "homes/index"
 
   delete :cart_products, to: 'cart_products#all_destroy'
 

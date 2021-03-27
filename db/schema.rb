@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_083533) do
+ActiveRecord::Schema.define(version: 2021_03_25_101006) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_083533) do
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_083533) do
     t.integer "order_id"
     t.integer "quantity"
     t.integer "price"
-    t.integer "production_status"
+    t.integer "production_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_083533) do
     t.integer "received_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_status", default: 0
   end
 
   create_table "products", force: :cascade do |t|

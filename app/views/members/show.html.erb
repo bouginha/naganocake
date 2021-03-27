@@ -1,12 +1,15 @@
 <div class="container">
+</br>
 
   <div class="row">
 	<h2 class="mypage"><i class="fas fa-user"></i>マイページ</h2>
-
-	<p class="under_mypage"><strong>ユーザ情報</strong>
-	  <%= link_to "編集する", edit_member_path, class:"btn btn-primary mypage_edit" %>
-		<%= link_to "パスワードを変更する", edit_member_registration_path, class:"btn btn-primary" %></p>
   </div>
+  </br>
+  <p><strong>会員情報</strong>
+
+	  <%= link_to "編集する", edit_member_path, class:"btn btn-primary mypage_edit" %>
+	  <%= link_to "パスワードを変更する", edit_member_registration_path, class:"btn btn-primary" %></p>
+   </br>
 		<div class="row">
 			<div class="col-xs-8">
 				<table class="table">
@@ -37,6 +40,7 @@
 				</table>
 			</div><br><br>
 		</div>
+		</br>
 		<p><strong>配送先　　</strong><%= link_to "一覧を見る", addresses_path, class:"btn btn-primary" %>
 		<p><strong>注文履歴　</strong><%= link_to "一覧を見る", orders_path, class:"btn btn-primary" %>
 
