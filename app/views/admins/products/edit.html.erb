@@ -8,9 +8,14 @@
 
 
         <%= form_with model: @product, url: admins_product_path, local: true do |f| %>
+        <div class="offset-sm-1 col-sm-3">
           <%= attachment_image_tag @product, :image, class: "w-100" %>
-
+          </div>
           <div class="edit-group mb-3 mt-4">
+            <label for="inputImage">商品画像</label>
+            <%= f.attachment_field :image, placeholder: "商品画像" %>
+          </div>
+          <div class="edit-group">
             <label class="col-sm-2 control-label">商品名</label>
             <%= f.text_field :name, class:"form-control", placeholder:@product.name %>
           </div>

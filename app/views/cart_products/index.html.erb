@@ -16,22 +16,24 @@
       <%i=0%>
       <%plus=0%>
         <% @cart_products.each do |cart_product| %>
-          <tr>
-            <td><%=cart_product.product.name%></td>
-            <td><%= form_for (cart_product) do |f| %>
-                <%= f.number_field :quantity, min:1 %><span>個</span>
-                <%= f.submit "個数変更", class: "btn btn-outline-success" %>
-                <% end %>
-            </td>
-            <td><%=cart_product.price%></td>
-            <td><%=i=(cart_product.price*cart_product.quantity)%></td>
-            <%plus+=i%>
-            <td>
-              <%=link_to cart_product_path(cart_product), method: :delete do%>
-                <h5 class="btn btn-outline-danger">カートから出す</h5>
-              <%end%>
-            </td>
-          </tr>
+          <%if cart_product.product.is_active%>
+            <tr>
+              <td><%=cart_product.product.name%></td>
+              <td><%= form_for (cart_product) do |f| %>
+                  <%= f.number_field :quantity, min:1 %><span>個</span>
+                  <%= f.submit "個数変更", class: "btn btn-outline-success" %>
+                  <% end %>
+              </td>
+              <td><%=cart_product.price%></td>
+              <td><%=i=(cart_product.price*cart_product.quantity)%></td>
+              <%plus+=i%>
+              <td>
+                <%=link_to cart_product_path(cart_product), method: :delete do%>
+                  <h5 class="btn btn-outline-danger">カートから出す</h5>
+                <%end%>
+              </td>
+            </tr>
+            <%end%>
         <%end%>
         <tr>
 					<td colspan="2"></td>
