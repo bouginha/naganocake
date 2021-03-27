@@ -73,6 +73,9 @@ class OrdersController < ApplicationController
   end
 
   def new
+    
+    
+    
     @cart_products=current_member.cart_products
     @order=Order.new
 
