@@ -51,19 +51,19 @@
 
 
     <div class="row">
-      <div class="offset-6">
-
-        <div class="row">
-          <%= flash[:notice] %>
-          <%= form_for (@cart_product) do |f| %>
-            <%= f.number_field :quantity, min:1, placeholder: "個数選択" %><span>個</span>
-            <%= f.hidden_field :member_id, :value => current_member.id %>
-            <%= f.hidden_field :product_id, :value => @product.id %>
-            <%= f.hidden_field :price, :value => (@product.normal_price * 1.1).floor %>
-            <%= f.submit "カートに入れる", class: "btn btn-outline-danger" %>
-      　　<% end %>
-        </div>
-
+      <div class="offset-6">  
+        <%if member_signed_in?%>
+          <div class="row">
+            <%= flash[:notice] %>
+            <%= form_for (@cart_product) do |f| %>
+              <%= f.number_field :quantity, min:1, placeholder: "個数選択" %><span>個</span>
+              <%= f.hidden_field :member_id, :value => current_member.id %>
+              <%= f.hidden_field :product_id, :value => @product.id %>
+              <%= f.hidden_field :price, :value => (@product.normal_price * 1.1).floor %>
+              <%= f.submit "カートに入れる", class: "btn btn-outline-danger" %>
+        　　<% end %>
+          </div>
+        <%end%>  
         <div class="row">
           <%= flash[:into_cart_product_error] %>
         </div>
