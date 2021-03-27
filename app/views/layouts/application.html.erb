@@ -24,6 +24,11 @@
           </button>
           <div class="navbar-collapse collapse collapse show" id="navbarNavDropdown" style="">
 
+
+            <%= form_tag(homes_index_path,method: :get) do%>
+              <%= text_field_tag :search, "",placeholder:"何かお探しですか？"%>
+              <%= submit_tag 'search', :name => nil%>
+            <%end%>
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
                 <li class="header">

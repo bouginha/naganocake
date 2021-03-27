@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get "order/thanks" => "orders#thanks"
   get 'homes/top'
   get 'homes/about'
-
+  get "homes/index"
 
   delete :cart_products, to: 'cart_products#all_destroy'
 
