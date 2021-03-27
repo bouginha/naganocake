@@ -12,4 +12,9 @@ class Order < ApplicationRecord
         enum received_status: {
 
     },_prefix: true
+    
+      enum payment_method:{
+        "クレジットカード":0,
+        "銀行振込":1,
+      },_prefix: true
 end

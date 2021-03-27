@@ -3,8 +3,25 @@
 <div class="container">
   <div class="row">
 
+    <div class="col-3 mt-4 ">
+      <div class="offset-1 col-10">
+        <div class="row d-flex aline-items-center">
+          <strong class="red-border px-3 pb-1">ジャンル検索</strong>
+        </div>
 
-    <div class="col-md-8 offset-md-1">
+ 
+    <span class="brown-border text-center"><%= link_to "すべての商品", products_path %></span>
+
+    <% @products_genre.each do |products_genre| %>
+      <%= link_to products_genre_path(products_genre.id) do %>
+        <div class="row mx-auto mt-3">
+          <span class="brown-border text-center"><%= products_genre.name%></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+    <div class="col-md-7 offset-md-1">
 <h2>商品一覧</h2>
 
 <table class="table table-inverse">
@@ -19,12 +36,7 @@
     </tr>
   </thead>
 
-    <% @products_genre.each do |products_genre| %>
 
-	 	<%= link_to  products_genre_path(products_genre.id) do %>
-	 		<%= products_genre.name %>
-	 	<% end %>
-   	<% end %>
 
 
       <% @products.each do |product| %>

@@ -13,6 +13,8 @@
           <th colspan="3">商品小計</th>
         </tr>
       </thead>
+      <%i=0%>
+      <%plus=0%>
         <% @cart_products.each do |cart_product| %>
           <tr>
             <td><%=cart_product.product.name%></td>
@@ -22,7 +24,8 @@
                 <% end %>
             </td>
             <td><%=cart_product.price%></td>
-            <td><%=(cart_product.price*cart_product.quantity)%></td>
+            <td><%=i=(cart_product.price*cart_product.quantity)%></td>
+            <%plus+=i%>
             <td>
               <%=link_to cart_product_path(cart_product), method: :delete do%>
                 <h5 class="btn btn-outline-danger">カートから出す</h5>
@@ -30,6 +33,7 @@
             </td>
           </tr>
         <%end%>
+        <%=plus%>
     </table>
 
     <table class="col-md-3 col-sm-3 col-xs-3 p-5 rounded px-0 my-5">
