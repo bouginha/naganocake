@@ -21,8 +21,11 @@ ja:
       member:
         last_name: 性
         first_name: 名
-        kana_last_name: (セイ)
-        kana_first_name: (メイ)
+        Last_name_kana: (セイ)
+        First_name_kana: (メイ)
         postal_code : 郵便番号
         address: 住所
-        phone_number: 電話番号
+        Telephone_number: 電話番号
+        Email: メールアドレス
+        Password: パスワード
+

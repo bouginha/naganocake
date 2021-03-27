@@ -26,18 +26,18 @@ class Admins::OrdersController < ApplicationController
     if params[:order][:upd]=="1"
     	@order = Order.find(params[:id])
       @order.update(order_params)
-      
+
       if @order.order_status=="入金確認"
         @ordered_products=OrderedProduct.where(order_id: params[:id])
-  
+
   		    for s in @ordered_products do
            s.update(production_status: "製作待ち")
           end
-      
+
       end
-      
+
       flash[:success] = "更新に成功しました"
-          
+
     elsif params[:order][:upd]=="2"
       @ordered_products=OrderedProduct.where(order_id: params[:id])
       @ordered_product=OrderedProduct.find(params[:order][:ordered_product_id])
@@ -45,15 +45,15 @@ class Admins::OrdersController < ApplicationController
 
       if @ordered_products.size==@ordered_products.production_status_製作完了.size
         @order = Order.find(params[:id])
-        @order.update(order_status: "発送準備中")      
+        @order.update(order_status: "発送待ち")
 
       elsif @ordered_product.production_status=="製作中"
         @order = Order.find(params[:id])
         @order.update(order_status: "製作中")
-        
+
       end
-      
-    flash[:success] = "更新に成功しました"    
+
+    flash[:success] = "更新に成功しました"
 
     end
 
