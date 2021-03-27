@@ -6,7 +6,7 @@
       <h5 class="text-dark bg-light p-4 mb-0">商品更新フォーム</h5>
       <div class="form-body p-4">
 
-        <%= render '/layouts/error', model: @product %>
+
         <%= form_with model: @product, url: admins_product_path, local: true do |f| %>
           <%= attachment_image_tag @product, :image, class: "w-100" %>
 
