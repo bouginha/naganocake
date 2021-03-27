@@ -6,42 +6,38 @@
       
 
     <div class="col-md-8 offset-md-1">
-<h2>ジャンル詳細</h2>
-
-<table class="table table-inverse">
-      <thead>
-    <tr>
-      <th><%=@products_genre.name%></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-      <% @products.each do |product| %>
-          <%if @products_genre.id==product.products_genre_id%>
-            <tr>
-              <td>
-                <%= attachment_image_tag product, :image, :fill, 60, 60, fallback: "no_image.jpg",size:"40x40"  %>
-              </td>
-              <td>
-                <%= link_to product_path(product) do %>
-                    <p><%= product.name%></p>
-                <% end %>
-              </td>
-              <td>
-              <p><%= product.about%></p>
-              </td>
-              <td>
-              <p><%= product.normal_price%></p>
-              </td>
-              <td>
-              <p><%= product.products_genre.name%></p>
-              </td>
-            </tr>
-          <% end %>
-      <% end %>
+      <h2>ジャンル詳細</h2>
+      <table class="table table-inverse">
+        <thead>
+          <tr>
+            <th><%=@products_genre.name%></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <% @products.each do |product| %>
+            <%if @products_genre.id==product.products_genre_id%>
+              <tr>
+                <td>
+                  <%= attachment_image_tag product, :image, :fill, 60, 60, fallback: "no_image.jpg",size:"40x40"  %>
+                </td>
+                <td>
+                  <%= link_to product_path(product) do %>
+                      <p><%= product.name%></p>
+                  <% end %>
+                </td>
+                <td>
+                  <p><%= product.about%></p>
+                </td>
+                <td>
+                  <p><%= product.normal_price%></p>
+                </td>
+                <td>
+                  <p><%= product.products_genre.name%></p>
+                </td>
+              </tr>
+            <% end %>
+        <% end %>
       </table>
      </div>
-
-
-  
   </div>
 </div>  
