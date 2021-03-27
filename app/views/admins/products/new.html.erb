@@ -1,34 +1,33 @@
-<h1>Admins::Products#new</h1>
-<p>Find me in app/views/admins/products/new.html.erb</p>
+
 <div class="containar">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0">商品登録フォーム</h5>
       <div class="form-body p-4">
-    
+
 <%= render '/layouts/error', model: @product %>
         <%= form_with model: @product ,url: admins_products_path, local:true do |f| %>
-  
+
 
           <%= f.attachment_field :image%>
-  
+
           <div class="input-group mb-3 mt-4">
             <%= f.text_field :name, class:"form-control", placeholder:"商品名" %>
           </div>
-  
+
           <%= f.text_area :about, class:"form-control", rows:"3", placeholder:"商品詳細" %>
           <%= f.text_field :normal_price, class:"form-control", placeholder:"税抜価格" %>
-          
+
           <div class="form-group">
             <label class="col-sm-2 control-label">ジャンル</label>
             <%= f.collection_select :products_genre_id, ProductsGenre.all, :id, :name %>
           </div>
-          
+
           <div class="form-group">
             <label class="col-sm-2 control-label">販売ステータス</label>
             <%= f.select :is_active,{販売中:true, 販売停止:false} %>
           </div>
-          
+
           <hr>
           <%= f.submit '登録', class:"btn btn-lg btn-block btn-info mt-4" %>
           </hr>

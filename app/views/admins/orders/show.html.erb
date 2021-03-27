@@ -1,5 +1,4 @@
-<h1>Admins::Orders#show</h1>
-<p>Find me in app/views/admins/orders/show.html.erb</p>
+
 
 <div class="container">
 	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文詳細画面</h4>
@@ -73,7 +72,7 @@
 	  		  	<% @products.each do |product| %>
 		  		  	<%if ordered_product.product_id==product.id%>
 			  		  	<tr><td>
-	
+
 			  		  		<%=product.name%>
 			  		  	</td>
 		  		  	<%end%>
