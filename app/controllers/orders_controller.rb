@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-
     @order=Order.new(order_params)
   	@member = current_member
   	@ads = @member.addresses
@@ -69,10 +68,15 @@ class OrdersController < ApplicationController
   	@cart_products=current_member.cart_products
   	@ads = @member.addresses
 		render :confirm
+
 	  end
   end
 
+
   def new
+    
+    
+    
     @cart_products=current_member.cart_products
     @order=Order.new
 
