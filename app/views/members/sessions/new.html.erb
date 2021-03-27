@@ -1,0 +1,27 @@
+  <h5><%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%></h5>
+
+<div class="container" style="width: 50%; margin: 20px auto;">
+  <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">会員ログイン</h4>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="form-group">
+      <label>メールアドレス</label>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="form-group">
+      <label>パスワード</label>
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "ログイン", class:"btn btn-success", style:"display:block; margin: 0 auto;" %>
+    </div>
+  <% end %>
+  <%= link_to new_member_registration_path do %>
+    <span class="glyphicon glyphicon-chevron-left">新規登録はこちら</span>
+  <% end %>
+</div>

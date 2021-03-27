@@ -1,2 +1,58 @@
-<h1>Admins::Products#index</h1>
-<p>Find me in app/views/admins/products/index.html.erb</p>
+
+<div class="container">
+  <div class="row">
+
+
+    <div class="col-md-8 offset-md-1">
+<h2>商品一覧</h2>
+ <%= link_to "新規登録",new_admins_product_path %>
+<table class="table table-inverse">
+      <thead>
+    <tr>
+      <th></th>
+      <th>商品名</th>
+      <th>詳細</th>
+      <th>値段</th>
+      <th>ジャンル</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+      <% @product.each do |product| %>
+        <tr>
+          <td>
+            <%= attachment_image_tag product, :image, :fill, 60, 60, fallback: "no_image.jpg",size:"40x40"  %>
+          </td>
+          <td>
+            <p><%= link_to admins_product_path(product), class: "btn-link" do %>
+                <%= product.name %>
+              <% end %>
+            </p>
+          </td>
+          <td>
+          <p><%= product.about%></p>
+          </td>
+          <td>
+          <p><%= product.normal_price%></p>
+          </td>
+          <td>
+          <p><%= product.products_genre.name%></p>
+          </td>
+
+          <%if product.is_active%>
+          <td>
+          <p class="btn btn-primary">販売中</p>
+          </td>
+          <%else%>
+          <td>
+          <p class="btn btn-danger">販売停止</p>
+          </td>
+          <%end%>
+        </tr>
+      <% end %>
+      </table>
+     </div>
+
+
+
+  </div>
+</div>

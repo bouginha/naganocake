@@ -1,2 +1,102 @@
-<h1>Admins::Orders#show</h1>
-<p>Find me in app/views/admins/orders/show.html.erb</p>
+
+
+<div class="container">
+	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文詳細画面</h4>
+  <div class="row">
+
+
+
+
+<div class="col-xs-5 m-2">
+	<table class="table table-bordered">
+		<tr>
+			<th>注文者名</th>
+			<td><%= link_to  admins_admin_path(@member.id) do %>
+					<%= @order.member.last_name %>
+					<%= @order.member.first_name %>
+					<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th>配送先</th>
+			<td><%= @order.postal_code %>
+					<br>
+					<%= @order.address %>
+
+			</td>
+		</tr>
+		<tr>
+			<th>支払方法</th>
+			<td><%if @order.payment_method==0%>
+	    <p>クレジット払い</p>
+      <%else%>
+      <p>銀行振り込み</p>
+      <%end%></td>
+		</tr>
+		<tr>
+			<th>注文ステータス</th>
+			<td>
+
+				<%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
+				<%=f.select  :order_status, Order.order_statuses.keys.to_a, {}, class: 'form-control' %>
+
+				<%= f.submit "更新" %>
+				<%=f.hidden_field :upd, :value =>1%>
+						<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th>配達希望日</th>
+			<td>
+				<%=@order.desired_delivery_date%>
+			</td>
+		</th>
+	</table>
+	</div>
+	<div class="col-xs-5 m-2">
+	<table class="table table-bordered">
+		      <thead>
+			    <tr>
+			      <th>商品名</th>
+			      <th>発注個数</th>
+			      <th>製作ステータス</th>
+
+			      <th>製作ステータス変更</th>
+
+			    </tr>
+			  </thead>
+
+		  <% @ordered_products.each do |ordered_product| %>
+	  		  <%if ordered_product.order_id==@order.id%>
+
+	  		  	<% @products.each do |product| %>
+		  		  	<%if ordered_product.product_id==product.id%>
+			  		  	<tr><td>
+
+			  		  		<%=product.name%>
+			  		  	</td>
+		  		  	<%end%>
+	  		  	<%end%>
+	  		  	<td>
+	  		    <%=ordered_product.quantity%>
+	  		  	</td>
+
+						<td>
+							<%=ordered_product.production_status%>
+						</td>
+	  		  	<td>
+				<%= form_with model: @order ,url:admins_order_path(@order), method: :patch, local:true do |f| %>
+					<%=f.select  :production_status, OrderedProduct.production_statuses.keys.to_a, {}, class: 'form-control' %>
+					<%=f.hidden_field :ordered_product_id, :value => ordered_product.id%>
+					<%=f.hidden_field :upd, :value =>2%>
+					<%= f.submit "更新" %>
+				<% end %>
+					</td>
+
+	  		  	</tr>
+	  		  	<%end%>
+  		  <%end%>
+	</table>
+	</div>
+	</div>
+	</div>

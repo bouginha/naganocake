@@ -8,8 +8,98 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+<body>
+ <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
 
-  <body>
+          <a class="navbar-brand", href="/">
+            <span class="fas fa-birthday-cake">長野ケーキ</span>
+          </a>
+          <a class="navbar-brand", href="/homes/about">
+            <span>About</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse collapse show" id="navbarNavDropdown" style="">
+
+
+            <%= form_tag(homes_index_path,method: :get) do%>
+              <%= text_field_tag :search, "",placeholder:"何かお探しですか？"%>
+              <%= submit_tag 'search', :name => nil%>
+            <%end%>
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li class="header">
+                  <%= link_to "商品一覧", admins_products_path, class: 'btn btn-light' %>
+                </li>
+                <li class="header">
+                  <%= link_to "会員一覧", admins_admins_path, class: 'btn btn-light' %>
+                </li>
+                <li class="header">
+                  <%= link_to "注文履歴一覧", admins_orders_path , class: 'btn btn-light'%>
+                </li>
+                <li class="header">
+                  <%= link_to "商品ジャンル一覧", admins_products_genres_path , class: 'btn btn-light'%>
+                </li>
+                <li class="header">
+                  <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-light' %>
+                </li>
+              <%elsif member_signed_in?%>
+                <li class="header">
+                  <%= link_to "トップ",root_path, class: 'btn btn-light' %>
+                </li>
+                <li class="header">
+                  <%= link_to "マイページ",member_path(current_member.id), class: 'btn btn-light' %>
+                </li>
+                <li class="header">
+                  <%= link_to "商品一覧",products_path, class: 'btn btn-light' %>
+                </li>
+                <li class="header">
+                  <%= link_to "カート",cart_products_path, class: 'btn btn-light' %>
+                </li>
+                <li class="header">
+                  <%= link_to "会員ログアウト", destroy_member_session_path, method: :delete, class: 'btn btn-light' %>
+                </li>
+                <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-success" %>
+              <%else%>
+                <li class="header">
+
+                </li>
+                <li class="header">
+
+                </li>
+                <li class="header">
+                  <%= link_to "会員新規登録", new_member_registration_path , class: 'btn btn-light'%>
+                </li>
+                <li class="header">
+                  <%= link_to "会員ログイン", new_member_session_path , class: 'btn btn-light'%>
+                </li>
+                <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-success" %>
+            <% end %>
+
+            </ul>
+            </div>
+            </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+    <% if flash[:success] %>
+          <div class="alert alert-success text-center" role="alert"><%= flash[:success] %></div>
+      <% elsif flash[:warning] %>
+          <div class="alert alert-warning text-center" role="alert"><%= flash[:warning] %></div>
+      <% end %>
+
     <%= yield %>
+    </main>
+
+    <footer>
+      <%= render 'layouts/footer'%>
+    </footer>
+
   </body>
+
+
 </html>

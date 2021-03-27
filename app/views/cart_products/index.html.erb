@@ -1,2 +1,69 @@
-<h1>CartProducts#index</h1>
-<p>Find me in app/views/cart_products/index.html.erb</p>
+
+<div class="containar">
+  <div class="row no-gutters">
+
+    <table class="col-md-7 col-sm-7 col-xs-7 p-3 mx-auto rounded px-0 my-5">
+      <h3>マイカート</h3>
+      <thead>
+        <tr>
+          <th class="m-2">商品名</th>
+          <th>個数</th>
+          <th>単価</th>
+          <th colspan="3">商品小計</th>
+        </tr>
+      </thead>
+      <%i=0%>
+      <%plus=0%>
+        <% @cart_products.each do |cart_product| %>
+
+            <tr>
+              <td><%=cart_product.product.name%></td>
+              <td><%= form_for (cart_product) do |f| %>
+                  <%= f.number_field :quantity, min:1 %><span>個</span>
+                  <%= f.submit "個数変更", class: "btn btn-outline-success" %>
+                  <% end %>
+              </td>
+              <td><%=cart_product.price%></td>
+              <td><%=i=(cart_product.price*cart_product.quantity)%></td>
+              <%plus+=i%>
+              <td>
+                <%=link_to cart_product_path(cart_product), method: :delete do%>
+                  <h5 class="btn btn-outline-danger">カートから出す</h5>
+                <%end%>
+              </td>
+            </tr>
+
+        <%end%>
+        <tr>
+					<td colspan="2"></td>
+					<td>合計金額：</td>
+					<td><%=plus%></td>
+				</tr>
+    </table>
+
+
+    <table class="col-md-3 col-sm-3 col-xs-3 p-5 rounded px-0 my-5">
+      <tr>
+        <td>
+          <%=link_to new_order_path do%>
+              <center><h5 class="text-dark p-3 m-0 mb-0 btn btn-warning" style="width:200px">注文情報入力へ進む</h5></center>
+          <%end%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%=link_to homes_top_path do%>
+            <center><h5 class="text-dark p-3 m-3 mb-0 btn btn-info" style="width:200px">買い物を続ける</h5></center>
+          <%end%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%=link_to cart_products_path, method: :delete do%>
+            <center><h5 class="text-dark p-3 m-3 mb-0 btn btn-danger" style="width:200px">カートを空にする</h5></center>
+          <%end%>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

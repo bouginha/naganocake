@@ -1,22 +1,51 @@
 class Admins::ProductsController < ApplicationController
-  def new
-  end
+  before_action :authenticate_admin!
+        def new
+            @product=Product.new
+        end
+        def create
 
-  def show
-  end
+              @product=Product.new(product_params)
 
-  def index
-  end
+            if @product.save
+              redirect_to admins_product_path(@product)
+            else
 
-  def edit
-  end
+              render :new
+            end
+        end
 
-  def update
-  end
+        def show
+          @product = Product.find(params[:id])
+        end
 
-  def create
-  end
+        def index
+            @product=Product.all
 
-  def destroy
-  end
+        end
+
+        def edit
+
+          @product = Product.find(params[:id])
+
+
+        end
+
+        def destroy
+        end
+
+        def update
+          @product = Product.find(params[:id])
+          if @product.update(product_params)
+            redirect_to admins_products_path
+          else
+            render :edit
+          end
+        end
+
+     private
+
+        def product_params
+          params.require(:product).permit(:name,:about,:image,:normal_price,:products_genre_id,:is_active)
+        end
 end

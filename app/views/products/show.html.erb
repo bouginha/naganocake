@@ -1,2 +1,64 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-3 mt-4">
+      <div class="offset-1 col-10">
+        <div class="row d-flex aline-items-center">
+          <strong class="red-border px-3 pb-1">ジャンル検索</strong>
+        </div>
+        <div class="row mx-auto mt-3">
+          <span class="brown-border text-center"><%= link_to "すべての商品", products_path %></span>
+        </div>
+        <% @products_genre.each do |products_genre| %>
+          <%= link_to products_genre_path(products_genre.id) do %>
+            <div class="row mx-auto mt-3">
+              <span class="brown-border text-center"><%= products_genre.name%></span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-9 my-3">
+    	<div class="row">
+  	    <div class="col-5">
+          <%= attachment_image_tag @product, :image, size: '50x50', format: "jpeg", fallback: 'noimage.jpg', size: '300x300', class: "rounded" %>
+  	    </div>
+        <div class="col-5">
+          <div class="row">
+            <h4 class="red-border px-3 pb-1"><%= @product.name %></h4>
+          </div>
+          <div class="row mt-3">
+            <p class="ml-5"><%= @product.about %></p>
+          </div>
+          <div class="row">
+            <strong class="red-border px-3 ml-auto"><%= (@product.normal_price * 1.1).floor %>円 (税込)</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="offset-6">
+          <%if member_signed_in?%>
+            <div class="row">
+              <%= flash[:notice] %>
+              <%= form_for (@cart_product) do |f| %>
+                <%= f.number_field :quantity, min:1, placeholder: "個数選択" %><span>個</span>
+                <%= f.hidden_field :member_id, :value => current_member.id %>
+                <%= f.hidden_field :product_id, :value => @product.id %>
+                <%= f.hidden_field :price, :value => (@product.normal_price * 1.1).floor %>
+                <%= f.submit "カートに入れる", class: "btn btn-outline-danger" %>
+          　　<% end %>
+            </div>
+          <%end%>
+          <div class="row">
+            <%= flash[:into_cart_product_error] %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

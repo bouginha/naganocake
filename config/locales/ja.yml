@@ -1,0 +1,28 @@
+ja:
+  enums:
+    order:
+      order_status:
+        waiting: "入金待ち"
+        paid_up: "入金確認"
+        in_production: "製作中"
+        preparing: "発送準備中"
+        shipped: "発送済み"
+        method_payment:
+        credit: "クレジットカード"
+        bank: "銀行振込"
+        order_detail:
+      production_status:
+        not_startable: "着手不可"
+        waiting_for_production: "製作待ち"
+        in_production: "製作中"
+        production_completed: "製作完了"
+  activerecord:
+    attributes:
+      member:
+        last_name: 性
+        first_name: 名
+        kana_last_name: (セイ)
+        kana_first_name: (メイ)
+        postal_code : 郵便番号
+        address: 住所
+        phone_number: 電話番号

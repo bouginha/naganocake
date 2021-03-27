@@ -1,84 +1,63 @@
 Rails.application.routes.draw do
-  get 'products_genres/show'
-  get 'products_genres/index'
+
+# admin
+  devise_for :admins, controllers: {
+  sessions: 'admins/sessions',
+  registrations: 'admins/registrations'}
+
   namespace :admins do
-    get 'products_genres/new'
-    get 'products_genres/show'
-    get 'products_genres/index'
-    get 'products_genres/edit'
-    get 'products_genres/update'
-    get 'products_genres/create'
-    get 'products_genres/destroy'
+    resources :products_genres
+    post 'products_genres' => 'products_genres#index'
+    resources :products
+    post 'products' => 'products#index'
+    patch :order_status
+    patch :product_status
+    resources :admins, only: [:index, :show, :edit, :update]
+    resources :ordered_products, only: [:update]
+    resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index, :update]
   end
-  get 'products/show'
-  get 'products/index'
-  namespace :admins do
-    get 'products/new'
-    get 'products/show'
-    get 'products/index'
-    get 'products/edit'
-    get 'products/update'
-    get 'products/create'
-    get 'products/destroy'
-  end
-  namespace :admins do
-    get 'admins/index'
-    get 'admins/show'
-    get 'admins/edit'
-    get 'admins/update'
-  end
-  get 'cart_products/index'
-  get 'cart_products/create'
-  get 'cart_products/update'
-  get 'cart_products/destroy'
-  get 'cart_products/all_destroy'
-  namespace :admins do
-    get 'ordered_products/update'
-  end
-  namespace :admins do
-    get 'cart_products/index'
-    get 'cart_products/create'
-    get 'cart_products/update'
-    get 'cart_products/destroy'
-    get 'cart_products/all_destroy'
-  end
-  get 'addresses/index'
-  get 'addresses/edit'
-  get 'addresses/update'
-  get 'addresses/create'
-  get 'addresses/destroy'
-  namespace :admins do
-    get 'addresses/index'
-    get 'addresses/edit'
-    get 'addresses/update'
-    get 'addresses/create'
-    get 'addresses/destroy'
-  end
-  get 'members/show'
-  get 'members/edit'
-  get 'members/update'
+    #get 'admins/homes/top'
+    post 'admins/products_genres' => 'admins/products_genres#index'
+
+# member
+  devise_for :members, controllers: {
+  sessions: 'members/sessions',
+  registrations: 'members/registrations'}
+  resources :products, only: [:index, :show]
+  resources :products_genres, only: [:index, :show]
+
+  resources :cart_products, only: [:index, :create, :update, :destroy, :all_destroy]
+  resources :addresses, only: [:index, :edit, :update, :create, :destroy]
   get 'members/unsubscribe'
-  get 'members/withdraw'
-  namespace :admins do
-    get 'members/show'
-    get 'members/edit'
-    get 'members/update'
-    get 'members/unsubscribe'
-    get 'members/withdraw'
-  end
-  get 'orders/show'
-  get 'orders/confirm'
-  get 'orders/create'
-  get 'orders/new'
-  get 'orders/thanks'
-  namespace :admins do
-    get 'orders/show'
-    get 'orders/confirm'
-    get 'orders/create'
-    get 'orders/new'
-    get 'orders/thanks'
-  end
-  devise_for :admins
-  devise_for :members
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  patch 'members/withdraw'
+  resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw, :new]
+  resources :orders, only: [:show, :confirm, :create, :new, :thanks, :index]
+  get 'order/confirm' => 'orders#confirm'
+  get "order/thanks" => "orders#thanks"
+  get 'homes/top'
+  get 'homes/about'
+  get "homes/index"
+
+  delete :cart_products, to: 'cart_products#all_destroy'
+
+root to: 'homes#top'
+
 end
+
+  # namespace :admins do
+  #   resources :cart_products, only: [:index, :create, :update, :destroy, :all_destroy]
+  # end
+
+  # namespace :admins do
+  #   resources :addresses, only: [:index, :edit, :update, :create, :destroy]
+  # end
+
+  # namespace :admins do
+  #   resources :members, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+  # end
+
+  # namespace :admins do
+  #   resources :orders, only: [:show, :confirm, :create, :new, :thanks]
+  # end
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

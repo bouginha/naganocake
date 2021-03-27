@@ -1,2 +1,19 @@
-<h1>ProductsGenres#index</h1>
-<p>Find me in app/views/products_genres/index.html.erb</p>
+
+<div class="containar">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">商品登録フォーム</h5>
+      <div class="form-body p-4">
+
+        <%= form_with model: @products_genre, local:true do |f| %>
+
+          <div class="input-group mb-3 mt-4">
+            <%= f.text_field :name, class:"form-control", placeholder:"ジャンル名" %>
+          </div>
+
+          <hr>
+
+      </div>
+    </div>
+  </div>
+</div>
